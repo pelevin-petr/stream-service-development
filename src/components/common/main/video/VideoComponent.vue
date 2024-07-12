@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const videoArray = [
+interface Stream {
+  id: number
+  link: string
+}
+const streamVideos: Stream[] = [
   { id: 1, link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg' },
   { id: 2, link: 'https://www.youtube.com/watch?v=nVWFOtzL7ok' },
   { id: 3, link: 'https://www.youtube.com/watch?v=nVWFOtzL7ok' },
@@ -22,7 +26,7 @@ const videoArray = [
 
 <template>
   <div class="mt-16">
-    <div v-for="video of videoArray" :key="video.id" class="inline pt-96 mt-96">
+    <div v-for="video of streamVideos" :key="video.id" class="inline pt-96 mt-96">
       <video class="w-40 inline m-4 mb-8 border border-gray-200 rounded-lg" controls>
         <source :src="video.link" type="video/mp4">
         Your browser does not support the video tag.

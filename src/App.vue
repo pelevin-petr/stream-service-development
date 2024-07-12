@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import NavBar from '@/components/NavBar.vue'
-import VideoComponent from '@/components/VideoComponent.vue'
+import VideoComponent from '@/components/common/main/video/VideoComponent.vue'
+import HeaderComponent from '@/components/common/header/HeaderComponent.vue'
 </script>
 
 <template>
-<NavBar></NavBar>
-<VideoComponent></VideoComponent>
+  <HeaderComponent />
+  <VideoComponent />
 </template>
 
 <style scoped>
