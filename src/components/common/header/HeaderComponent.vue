@@ -7,7 +7,7 @@ import AuthForm from '@/components/auth/AuthForm.vue'
 
 
 const windowWidth = ref<number>(window.innerWidth)
-const regStatus: boolean = true  //need in some logic
+const regStatus: boolean = false  //need in some logic
 
 watchEffect(() => {
   const updateWindowSize = () => {
@@ -27,17 +27,21 @@ watchEffect(() => {
         <span v-else class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">ССА</span>
       </a>
       <div class="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
-        <div v-if="regStatus">
-          <button type="button"
-                  class="mr-1 text-black-50 bg-gray-200 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Войти
-          </button>
-          <button type="button"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Регистрация
-          </button>
+        <div v-if="!regStatus">
+          <RouterLink to="/authorisation">
+            <button type="button"
+                    class="mr-1 text-black-50 bg-gray-200 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:bg-gray-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Войти
+            </button>
+          </RouterLink>
+          <RouterLink to="/authorisation">
+            <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Регистрация
+            </button>
+          </RouterLink>
         </div>
-        <AuthForm v-else/>
+        <AuthForm v-else />
         <button data-collapse-toggle="navbar-sticky" type="button"
                 class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 aria-controls="navbar-sticky" aria-expanded="false">

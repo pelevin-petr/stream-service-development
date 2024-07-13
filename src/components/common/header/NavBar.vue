@@ -19,9 +19,11 @@ const calcWindowWidth = (windowWidth: number | undefined): string => {
       class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-white dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700"
       :style="calcWindowWidth(windowWidth)">
       <li class="mt-2">
-        <a href="#"
-           class="block py-2 px-3 text-white bg-blue-700 rounded lg:bg-transparent lg:text-blue-700 lg:p-0 lg:dark:text-blue-500"
-           aria-current="page">Главная</a>
+        <RouterLink to="/">
+          <a href="#"
+             class="block py-2 px-3 text-white bg-blue-700 rounded lg:bg-transparent lg:text-blue-700 lg:p-0 lg:dark:text-blue-500"
+             aria-current="page">Главная</a>
+        </RouterLink>
       </li>
       <li class="mt-2">
         <a href="#"
