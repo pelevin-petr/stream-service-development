@@ -1,13 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from '@/views/HomeView.vue'
-import AuthForm from '@/components/auth/AuthForm.vue'
 import StreamView from '@/views/StreamView.vue'
+import RegisterView from '@/views/RegisterView.vue'
+import LoginView from '@/views/LoginView.vue'
 
 
 const routes = [
   { path: '/', component: HomeView, alias: '/' },
-  { path: '/authorisation', component: AuthForm },
+  { path: '/registration', component: RegisterView },
+  { path: '/authorization', component: LoginView },
   { path: '/stream/:id', component: StreamView },
 ]
 

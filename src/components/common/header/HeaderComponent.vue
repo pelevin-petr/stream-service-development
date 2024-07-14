@@ -28,13 +28,13 @@ watchEffect(() => {
       </a>
       <div class="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
         <div v-if="!regStatus">
-          <RouterLink to="/authorisation">
+          <RouterLink to="/authorization">
             <button type="button"
                     class="mr-1 text-black-50 bg-gray-200 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:bg-gray-200 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Войти
             </button>
           </RouterLink>
-          <RouterLink to="/authorisation">
+          <RouterLink to="/registration">
             <button type="button"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Регистрация
