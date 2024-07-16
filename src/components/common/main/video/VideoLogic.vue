@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 interface StreamDescription {
   name: string;
   whenIncluded: Date;
@@ -6,6 +6,7 @@ interface StreamDescription {
   strimer: string;  //or author or car number
   smallDescription?: string;
 }
+
 export interface Stream {
   readonly id: number;
   link: string;

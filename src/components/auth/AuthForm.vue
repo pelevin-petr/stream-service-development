@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 
 import RegisterForm from '@/components/auth/RegisterForm.vue'
@@ -9,8 +9,8 @@ const isRegistered = ref<boolean>(true)
 </script>
 
 <template>
-    <LoginForm v-if="isRegistered"/>
-    <RegisterForm v-else/>
+  <LoginForm v-if="isRegistered" />
+  <RegisterForm v-else />
 </template>
 
 <style scoped>

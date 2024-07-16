@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import HeaderComponent from '@/components/common/header/HeaderComponent.vue'
 import VideoComponent from '@/components/common/main/video/VideoComponent.vue'
 </script>

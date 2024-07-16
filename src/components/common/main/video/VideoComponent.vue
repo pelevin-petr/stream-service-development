@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 
 import { type Stream } from './VideoLogic.vue'
@@ -53,7 +53,7 @@ const streamVideos: Stream[] = [
       whenIncluded: new Date(),
       smallDescription: 'Lorem ipsum dolor sit amet.'
     }, city: 'Moskow', included: true
-  },{
+  }, {
     id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
       name: 'some name...',
       strimer: 'Ivanov V.V. car-1234',
@@ -100,7 +100,7 @@ const streamVideos: Stream[] = [
       whenIncluded: new Date(),
       smallDescription: 'Lorem ipsum dolor sit amet.'
     }, city: 'Moskow', included: true
-  },{
+  }, {
     id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
       name: 'some name...',
       strimer: 'Ivanov V.V. car-1234',
@@ -147,7 +147,7 @@ const streamVideos: Stream[] = [
       whenIncluded: new Date(),
       smallDescription: 'Lorem ipsum dolor sit amet.'
     }, city: 'Moskow', included: true
-  },{
+  }, {
     id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
       name: 'some name...',
       strimer: 'Ivanov V.V. car-1234',
@@ -194,7 +194,7 @@ const streamVideos: Stream[] = [
       whenIncluded: new Date(),
       smallDescription: 'Lorem ipsum dolor sit amet.'
     }, city: 'Moskow', included: true
-  },{
+  }, {
     id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
       name: 'some name...',
       strimer: 'Ivanov V.V. car-1234',
@@ -292,12 +292,12 @@ const viewMore = (): void => {
             Your browser does not support the video tag.
           </video>
           <br>
-          <label for="video" class="inline pl-5">{{ video.description.name }}</label>
+          <label class="inline pl-5" for="video">{{ video.description.name }}</label>
         </div>
       </span>
     </div>
     <div v-if="viewMoreValue==17"
-         class=" bg-blue-200  text-center text-black">
+         class="border-2 border-black text-center font-bold text-black">
       <button @click="viewMore">Показать больше &#8659;</button>
     </div>
   </div>
