@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import HeaderComponent from '@/components/common/header/HeaderComponent.vue'
-import VideoComponent from '@/components/common/main/video/VideoComponent.vue'
+import HomeVideoComponent from '@/components/common/main/video/HomeVideoComponent.vue'
 </script>
 
 <template>
   <HeaderComponent />
-  <VideoComponent />
+  <HomeVideoComponent />
 </template>
 
 <style scoped>

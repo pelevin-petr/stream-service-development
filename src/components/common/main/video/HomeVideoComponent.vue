@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-import { type Stream } from './VideoLogic.vue'
+import type { Stream } from '@/modules/streamInterface'
 
 
 // we need to get this info, its example
@@ -275,30 +273,18 @@ const streamVideos: Stream[] = [
     }, city: 'Moskow', included: true
   }
 ]
-const viewMoreValue = ref<number>(17)
-
-const viewMore = (): void => {
-  viewMoreValue.value = streamVideos.length
-}
 </script>
 
 <template>
-  <div class="mt-16">
-    <div v-for="(video, index) of streamVideos" :key="video.id" class="inline pt-96 mt-96">
-      <span v-if="index<=viewMoreValue">
-        <div v-if="video.included" class="inline-block">
-          <video class="w-40 inline mx-4 mt-4 border border-gray-200 rounded-lg" controls>
-            <source :src="video.link" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+    <div v-for="video of streamVideos" :key="video.id" class="w-[350px] h-[300px] bg-gray-600 mx-auto">
+      <div v-if="video.included">
+        <RouterLink :to="{ name: 'Stream', params: { id: video.id } }">
+          <img src="../../../../assets/img/favicon.svg" alt="This image don't supported by your browser" class="max-w-[150px]">
           <br>
           <label class="inline pl-5" for="video">{{ video.description.name }}</label>
-        </div>
-      </span>
-    </div>
-    <div v-if="viewMoreValue==17"
-         class="border-2 border-black text-center font-bold text-black">
-      <button @click="viewMore">Показать больше &#8659;</button>
+        </RouterLink>
+      </div>
     </div>
   </div>
 </template>

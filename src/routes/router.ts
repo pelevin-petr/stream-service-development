@@ -7,10 +7,10 @@ import LoginView from '@/views/LoginView.vue'
 
 
 const routes = [
-  { path: '/', component: HomeView, alias: '/' },
-  { path: '/registration', component: RegisterView },
-  { path: '/authorization', component: LoginView },
-  { path: '/stream/:id', component: StreamView }
+  { path: '/', component: HomeView, alias: '/', name: 'Home' },
+  { path: '/registration', component: RegisterView, name: 'Registration' },
+  { path: '/authorization', component: LoginView, name: 'Authorization' },
+  { path: '/stream/:id', component: StreamView, name: 'Stream' },
 ]
 
 export const router = createRouter({
