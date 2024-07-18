@@ -10,7 +10,7 @@ const routes = [
   { path: '/', component: HomeView, alias: '/', name: 'Home' },
   { path: '/registration', component: RegisterView, name: 'Registration' },
   { path: '/authorization', component: LoginView, name: 'Authorization' },
-  { path: '/stream/:id', component: StreamView, name: 'Stream' },
+  { path: '/stream/:id/:city', component: StreamView, name: 'Stream' },
 ]
 
 export const router = createRouter({
