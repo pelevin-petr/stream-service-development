@@ -276,7 +276,7 @@ const streamVideos: Stream[] = [
 </script>
 
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16">
     <div v-for="video of streamVideos" :key="video.id" class="w-[350px] h-[300px] bg-gray-600 mx-auto">
       <div v-if="video.included">
         <RouterLink :to="{ name: 'Stream', params: { id: video.id, link: video.link, city: 'Moskow' } }">

@@ -1,21 +1,11 @@
 <script lang="ts" setup>
-import { ref, watchEffect } from 'vue'
-
 import NavBar from '@/components/common/header/NavBar.vue'
 import SearchBar from '@/components/common/header/SearchBar.vue'
 import AuthForm from '@/components/auth/AuthForm.vue'
 
 
-const windowWidth = ref<number>(window.innerWidth)
 const regStatus: boolean = false  //need in some logic
 
-watchEffect(() => {
-  const updateWindowSize = () => {
-    windowWidth.value = window.innerWidth
-  }
-  window.addEventListener('resize', updateWindowSize)
-  return () => window.removeEventListener('resize', updateWindowSize)
-})
 </script>
 
 <template>
@@ -23,8 +13,8 @@ watchEffect(() => {
     <div class="max-w-screen-xxl flex flex-wrap items-center justify-between mx-auto p-4">
       <a class="flex items-center space-x-3 rtl:space-x-reverse" href="#">
         <img alt="SSA Logo" class="h-8" src="../../../assets/img/favicon.svg">
-        <span v-if="windowWidth > 1200" class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Система Стриминга Автомобилей</span>
-        <span v-else class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">ССА</span>
+        <span class=" hidden md:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">Система Стриминга Автомобилей</span>
+        <span class=" block md:hidden self-center text-xl font-semibold whitespace-nowrap dark:text-white">ССА</span>
       </a>
       <div class="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
         <div v-if="!regStatus">
@@ -54,7 +44,7 @@ watchEffect(() => {
           </svg>
         </button>
       </div>
-      <NavBar v-model:windowWidth="windowWidth">
+      <NavBar>
         <SearchBar />
       </NavBar>
     </div>
