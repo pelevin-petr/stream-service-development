@@ -1,5 +1,9 @@
 <script setup lang="ts">
-// const $route = name
+import { useStreamStore } from '@/stores/streamStore'
+
+
+
+const store = useStreamStore()
 </script>
 
 <template>
@@ -11,7 +15,8 @@
       </video>
     </div>
     <div>
-      <h2 class="">{{ $route.params }}
+      <h2 class="">
+        {{store.video}}
         <br>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste maiores mollitia, nemo officiis unde velit?
       </h2>
