@@ -7,284 +7,297 @@ const store = useStreamStore()
 // we need to get this info, its example
 const streamVideos: Stream[] = [
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   }, {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   }, {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   }, {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   }, {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
+  }, {
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
+  }, {
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
+  }, {
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
   {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
+    id: 1721396986966,
+    link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg',
+      description: {
+        carNumber: 'A240РУ-77',
+        streamer: 'Ivanov V.V.',
+        whenIncluded: new Date(),
+        smallDescription: 'Lorem ipsum dolor sit amet.',
+        city: 'Moskow'
+    },
+    included: true
   },
-  {
-    id: +(new Date()), link: 'https://www.youtube.com/watch?v=DDJ5Qlc6gvg', description: {
-      name: 'some name...',
-      strimer: 'Ivanov V.V. car-1234',
-      whenIncluded: new Date(),
-      smallDescription: 'Lorem ipsum dolor sit amet.'
-    }, city: 'Moskow', included: true
-  }
 ]
 </script>
 
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16">
-    <div v-for="video of streamVideos" :key="video.id" class="w-[350px] h-[300px] bg-gray-600 mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-20">
+    <div v-for="video of streamVideos" :key="video.id" class="w-[350px] h-[300px] bg-white mx-auto shadow-lg">
       <div v-if="video.included">
         <RouterLink @click="store.video = video" :to="{ name: 'Stream', params: { id: video.id } }">
-          <img src="../../../../assets/img/favicon.svg" alt="This image don't supported by your browser" class="max-w-[150px]">
-          <br>
-          <label class="inline pl-5" for="video">{{ video.description.name }}</label>
+          <img src="../../../../assets/img/dog.jpg" alt="This image don't supported by your browser" class="w-full">
+          <label class="block m-4 " for="video">Номер машины: {{ video.description.carNumber }}</label>
+          <p class="text-xs">*тут может быть еще инфа</p>
         </RouterLink>
       </div>
     </div>

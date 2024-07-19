@@ -11,11 +11,11 @@ const regStatus: boolean = false  //need in some logic
 <template>
   <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
     <div class="max-w-screen-xxl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a class="flex items-center space-x-3 rtl:space-x-reverse" href="#">
+      <RouterLink class="flex items-center space-x-3 rtl:space-x-reverse" to="/">
         <img alt="SSA Logo" class="h-8" src="../../../assets/img/favicon.svg">
         <span class=" hidden md:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">Система Стриминга Автомобилей</span>
         <span class=" block md:hidden self-center text-xl font-semibold whitespace-nowrap dark:text-white">ССА</span>
-      </a>
+      </RouterLink>
       <div class="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
         <div v-if="!regStatus">
           <RouterLink to="/authorization">
