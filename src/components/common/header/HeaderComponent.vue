@@ -3,14 +3,17 @@ import NavBar from '@/components/common/header/NavBar.vue'
 import SearchBar from '@/components/common/header/SearchBar.vue'
 import AuthForm from '@/components/auth/AuthForm.vue'
 
+import { ref } from 'vue'
+
 
 const regStatus: boolean = false  //need in some logic
 
+const visible = ref(false)
 </script>
 
 <template>
   <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-    <div class="max-w-screen-xxl flex flex-wrap items-center justify-between mx-auto p-4">
+    <div class="position-relative max-w-screen-xxl flex flex-wrap items-center justify-between mx-auto p-4">
       <RouterLink class="flex items-center space-x-3 rtl:space-x-reverse" to="/">
         <img alt="SSA Logo" class="h-8" src="../../../assets/img/favicon.svg">
         <span class=" hidden md:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">Система Стриминга Автомобилей</span>
@@ -34,7 +37,8 @@ const regStatus: boolean = false  //need in some logic
           </RouterLink>
         </div>
         <AuthForm v-else />
-        <button aria-controls="navbar-sticky" aria-expanded="false"
+        <button @click="visible = !visible"
+                aria-controls="navbar-sticky" aria-expanded="false"
                 class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg xl:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 data-collapse-toggle="navbar-sticky" type="button">
           <span class="sr-only">Open main menu</span>
@@ -44,7 +48,7 @@ const regStatus: boolean = false  //need in some logic
           </svg>
         </button>
       </div>
-      <NavBar>
+      <NavBar v-show="visible" class="position-absolute">
         <SearchBar />
       </NavBar>
     </div>
