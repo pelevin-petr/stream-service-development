@@ -23,8 +23,8 @@ const formattedDate = formatter.format(date);
 
 <template>
   <div>
-    <div>
-      <video class="w-full bg-gray-600  mt-16" controls>
+    <div class="flex justify-center items-center ">
+      <video class="w-full md:max-w-3xl lg:max-w-5xl xl:max-w-6xl bg-gray-600 md:rounded-2xl mt-[69px]" controls>
         <source src="../../../../assets/img/videoplayback%20(1).mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -60,16 +60,16 @@ const formattedDate = formatter.format(date);
 <style scoped>
 @media (max-width: 375px) {
   .text-lg {
-    font-size: 1rem; /* Уменьшение размера шрифта для небольших экранов */
+    font-size: 1rem;
   }
   
   .p-4 {
-    padding: 1rem; /* Уменьшение внутреннего отступа */
+    padding: 1rem;
   }
   
   .space-y-4 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
-    margin-top: 0.5rem; /* Уменьшение вертикального расстояния между элементами */
+    margin-top: 0.5rem;
   }
 }
 </style>

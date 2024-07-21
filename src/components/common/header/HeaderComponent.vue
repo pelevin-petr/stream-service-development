@@ -8,7 +8,7 @@ import { ref } from 'vue'
 
 const regStatus: boolean = false  //need in some logic
 
-const visible = ref(false)
+const visible = window.innerWidth >=1280 ? ref(true) : ref(false)
 </script>
 
 <template>
@@ -19,7 +19,7 @@ const visible = ref(false)
         <span class=" hidden md:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">Система Стриминга Автомобилей</span>
         <span class=" block md:hidden self-center text-xl font-semibold whitespace-nowrap dark:text-white">ССА</span>
       </RouterLink>
-      <div class="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
+      <div class="flex xl:order-2 space-x-3 xl:space-x-0 rtl:space-x-reverse">
         <div v-if="!regStatus">
           <RouterLink to="/authorization">
             <button
@@ -48,7 +48,7 @@ const visible = ref(false)
           </svg>
         </button>
       </div>
-      <NavBar v-show="visible" class="position-absolute">
+      <NavBar v-show="visible"  class="navbar position-absolute">
         <SearchBar />
       </NavBar>
     </div>
@@ -56,3 +56,11 @@ const visible = ref(false)
 
 
 </template>
+
+<style scoped>
+@media (min-width: 1280px) {
+  .navbar {
+    display: block;
+  }
+}
+</style>
