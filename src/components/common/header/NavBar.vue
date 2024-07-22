@@ -9,7 +9,7 @@
       <li class="mt-2">
         <RouterLink to="/">
           <a aria-current="page"
-             class="block py-2 px-3 text-white bg-blue-700 rounded xl:bg-transparent xl:text-white xl:p-0 "
+             class="block py-2 px-3 text-white bg-blue-700 rounded xl:bg-transparent xl:text-blue-700 dark:text-white dark:bg-extra-neutral-700 xl:p-0 "
              href="#">Главная</a>
         </RouterLink>
       </li>

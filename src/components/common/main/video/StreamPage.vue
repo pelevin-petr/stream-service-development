@@ -1,24 +1,32 @@
 <script setup lang="ts">
 import { useStreamStore } from '@/stores/streamStore'
+import { useRoute } from 'vue-router'
+import { computed, onMounted } from 'vue'
 
 
 
 const store = useStreamStore()
+const route = useRoute()
 
-const description = store.video.description
-const date = description.whenIncluded
 
-const options = {
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-  hour: '2-digit',
-  minute: '2-digit',
-  second: '2-digit',
-  hour12: false
-};
-const formatter = new Intl.DateTimeFormat('ru-RU', options);
-const formattedDate = formatter.format(date);
+
+// const options = {
+//   year: 'numeric',
+//   month: '2-digit',
+//   day: '2-digit',
+//   hour: '2-digit',
+//   minute: '2-digit',
+//   second: '2-digit',
+//   hour12: false
+// };
+// const formatter = new Intl.DateTimeFormat('ru-RU', options);
+// const formattedDate = formatter.format(date);
+
+onMounted(() => {
+  store.streamId = route.params.id
+})
+
+const description = computed(() => store.stream?.description)
 </script>
 
 <template>
@@ -33,24 +41,24 @@ const formattedDate = formatter.format(date);
       <div class="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-4 sm:p-6 space-y-4 dark:bg-neutral-500">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
           <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Car Number:</div>
-          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description.carNumber }}</div>
+          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description?.carNumber }}</div>
         </div>
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
           <div class="text-lg font-bold text-gray-900 dark:text-gray-200">When Included:</div>
-          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ formattedDate }}</div>
+          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100"></div>
         </div>
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
           <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Streamer:</div>
-          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description.streamer }}</div>
+          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description?.streamer }}</div>
         </div>
-        <div v-if="description.smallDescription"
+        <div v-if="description?.smallDescription"
              class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
           <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Description:</div>
-          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description.smallDescription }}</div>
+          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description?.smallDescription }}</div>
         </div>
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
           <div class="text-lg font-bold text-gray-900 dark:text-gray-200">City:</div>
-          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description.city }}</div>
+          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description?.city }}</div>
         </div>
       </div>
     </div>
