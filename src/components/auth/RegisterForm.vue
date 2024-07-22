@@ -15,14 +15,14 @@ const createAccount = () => {
 </script>
 
 <template>
-  <section class="bg-gray-50 dark:bg-gray-900">
+  <section class="bg-gray-50 dark:bg-extra-neutral-700">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <RouterLink class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white" href="#" to="/">
         <img alt="logo" class="w-8 h-8 mr-2" src="../../assets/img/favicon.svg">
         Система Стриминга Автомобилей
       </RouterLink>
       <div
-        class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-neutral-500 dark:border-gray-700">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Создайте аккаунт
@@ -32,7 +32,7 @@ const createAccount = () => {
               <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="email">Ваша почта</label>
               <input id="email"
                      v-model="formData.email"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-700 dark:placeholder-gray-800 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                      name="email"
                      placeholder="name@company.com"
                      type="email">
@@ -42,7 +42,7 @@ const createAccount = () => {
                      for="password">Пароль</label>
               <input id="password"
                      v-model="formData.password"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-700 dark:placeholder-gray-800 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                      name="password" placeholder="••••••••"
                      type="password"
               >
@@ -52,7 +52,7 @@ const createAccount = () => {
                 пароль</label>
               <input id="confirm-password"
                      v-model="formData.confirmPassword"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-700 dark:placeholder-gray-800 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                      name="confirm-password"
                      placeholder="••••••••"
               >
@@ -66,19 +66,19 @@ const createAccount = () => {
               </div>
               <div class="ml-3 text-sm">
                 <label class="font-light text-gray-500 dark:text-gray-300" for="terms">Я принимаю условия <a
-                  class="font-medium text-blue-500 text-primary-600 hover:underline dark:text-primary-500" href="#">Пользовательского
+                  class="font-medium text-blue-500 text-primary-600 hover:underline dark:text-extra-neutral-700 " href="#">Пользовательского
                   соглашения</a></label>
               </div>
             </div>
             <button
-              class="w-full text-white bg-blue-600  hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              class="w-full text-white bg-blue-600  hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-gray-800 dark:focus:ring-primary-800"
               type="submit"
               @click.prevent="createAccount">
               Создать аккаунт
             </button>
-            <p class="text-sm text-center font-light text-gray-500 dark:text-gray-400">
+            <p class="text-sm text-center font-light text-gray-500 dark:text-gray-300">
               Уже есть аккаунт?
-              <RouterLink class="font-medium  text-blue-500 text-primary-600 hover:underline dark:text-primary-500"
+              <RouterLink class="font-medium  text-blue-500 text-primary-600 hover:underline dark:text-extra-neutral-700"
                           href="#"
                           to="/authorization">
                 Войдите
@@ -92,5 +92,14 @@ const createAccount = () => {
 </template>
 
 <style scoped>
-
+@media (prefers-color-scheme: dark) {
+  .dark\:bg-extra-neutral-700 {
+    --tw-bg-opacity: 1;
+    background-color: #2C2C2C
+  }
+  .dark\:text-extra-neutral-700 {
+    --tw-bg-opacity: 1;
+    color: #2C2C2C
+  }
+}
 </style>

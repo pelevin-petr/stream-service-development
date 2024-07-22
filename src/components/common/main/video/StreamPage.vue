@@ -23,34 +23,34 @@ const formattedDate = formatter.format(date);
 
 <template>
   <div>
-    <div class="flex justify-center items-center ">
-      <video class="w-full md:max-w-3xl lg:max-w-5xl xl:max-w-6xl bg-gray-600 md:rounded-2xl mt-[69px]" controls>
+    <div class="flex justify-center items-center  ">
+      <video class="w-full md:max-w-3xl lg:max-w-5xl xl:max-w-6xl bg-gray-600 md:rounded-2xl mt-[69px] mb-5" controls>
         <source src="../../../../assets/img/videoplayback%20(1).mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
     <div>
-      <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-4 sm:p-6 space-y-4">
+      <div class="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-4 sm:p-6 space-y-4 dark:bg-neutral-500">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-          <div class="text-lg font-bold text-gray-900">Car Number:</div>
-          <div class="text-lg text-gray-700 sm:text-right">{{ description.carNumber }}</div>
+          <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Car Number:</div>
+          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description.carNumber }}</div>
         </div>
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-          <div class="text-lg font-bold text-gray-900">When Included:</div>
-          <div class="text-lg text-gray-700 sm:text-right">{{ formattedDate }}</div>
+          <div class="text-lg font-bold text-gray-900 dark:text-gray-200">When Included:</div>
+          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ formattedDate }}</div>
         </div>
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-          <div class="text-lg font-bold text-gray-900">Streamer:</div>
-          <div class="text-lg text-gray-700 sm:text-right">{{ description.streamer }}</div>
+          <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Streamer:</div>
+          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description.streamer }}</div>
         </div>
         <div v-if="description.smallDescription"
              class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-          <div class="text-lg font-bold text-gray-900">Description:</div>
-          <div class="text-lg text-gray-700 sm:text-right">{{ description.smallDescription }}</div>
+          <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Description:</div>
+          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description.smallDescription }}</div>
         </div>
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-          <div class="text-lg font-bold text-gray-900">City:</div>
-          <div class="text-lg text-gray-700 sm:text-right">{{ description.city }}</div>
+          <div class="text-lg font-bold text-gray-900 dark:text-gray-200">City:</div>
+          <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description.city }}</div>
         </div>
       </div>
     </div>

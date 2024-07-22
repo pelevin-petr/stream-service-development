@@ -5,8 +5,16 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>ССА (Система Стриминга Автомобилей)</title>
   <link href="/src/assets/img/favicon.svg" rel="icon" type="image/svg+xml" />
+  <style>
+      @media (prefers-color-scheme: dark) {
+          .dark\:bg-extra-neutral-700 {
+              --tw-bg-opacity: 1;
+              background-color: #2C2C2C
+          }
+      }
+  </style>
 </head>
-<body>
+<body class="dark:bg-extra-neutral-700">
 <div id="app"></div>
 <script defer src="/src/main.ts" type="module"></script>
 </body>
