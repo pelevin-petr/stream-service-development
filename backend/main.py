@@ -1,7 +1,7 @@
 from fastapi import FastAPI, APIRouter
 
-from service import streams_service
-from stream import CreateStream
+from src.service import streams_service
+from src.stream import CreateStream, Stream
 
 app = FastAPI()
 
@@ -21,6 +21,16 @@ def read_stream(stream_id: str):
 @router.post("/streams")
 def create_stream(stream: CreateStream):
     return streams_service.create(stream)
+
+
+@router.put("/streams")
+def update_stream(stream_id: str, title: str, description: str):
+    return streams_service.update(stream_id, title, description)
+
+
+@router.delete("/streams/{stream_id}")
+def delete_stream(stream_id: str):
+    return streams_service.delete(stream_id)
 
 
 app.include_router(router)
