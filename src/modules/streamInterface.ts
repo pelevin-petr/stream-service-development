@@ -8,8 +8,7 @@ interface StreamDescription {
 }
 
 export interface Stream {
-  readonly id: number;
-  link: string;
-  description: StreamDescription;
-  isTurnOn: boolean;  //we need to get info about streams(included or not)
+  readonly id: string;
+  title: string;
+  description: string;
 }

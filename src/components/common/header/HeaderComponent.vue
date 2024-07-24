@@ -8,12 +8,12 @@ import { ref } from 'vue'
 
 const regStatus: boolean = false  //need in some logic
 
-const visible = window.innerWidth >= 1280 ? ref(true) : ref(false)
+const visible = ref(window.innerWidth >= 1280)
 </script>
 
 <template>
   <nav
-    class="bg-white dark:bg-extra-neutral-700 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    class="bg-white dark:bg-extra-neutral-700 border-b border-gray-200 dark:border-gray-600">
     <div class="position-relative max-w-screen-xxl flex flex-wrap items-center justify-between mx-auto p-4">
       <RouterLink class="flex items-center space-x-3 rtl:space-x-reverse" to="/">
         <img alt="SSA Logo" class="h-8" src="../../../assets/img/favicon.svg">
