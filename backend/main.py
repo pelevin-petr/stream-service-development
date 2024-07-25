@@ -3,7 +3,9 @@ from fastapi import FastAPI, APIRouter
 from src.service import streams_service
 from src.stream import CreateStream, Stream
 
-app = FastAPI()
+app = FastAPI(
+    title="Stream Service",
+)
 
 router = APIRouter(prefix='/api')
 
@@ -28,8 +30,8 @@ def update_stream(stream_id: str, title: str, description: str):
     return streams_service.update(stream_id, title, description)
 
 
-@router.delete("/streams/{stream_id}")
-def delete_stream(stream_id: str):
+@router.delete("/streams")
+def delete_stream(stream_id: str) -> None | str:
     return streams_service.delete(stream_id)
 
 

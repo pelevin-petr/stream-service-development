@@ -24,10 +24,8 @@ class StreamsService:
         streams[stream_id] = stream
 
     def delete(self, stream_id: str) -> None | str:
-        try:
-            streams.pop(int(stream_id) - 1)
-        except IndexError:
-            return "Id стрима не действителен"
+        res = streams.pop(stream_id, "Id стрима не действителен")
+        return res if isinstance(res, str) else f"Stream({res}) успешно удален"
 
 
 streams_service = StreamsService()
