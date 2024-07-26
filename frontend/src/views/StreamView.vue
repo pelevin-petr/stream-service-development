@@ -3,7 +3,6 @@ import { useRoute } from 'vue-router'
 import { onMounted } from 'vue'
 
 import { useStreamStore } from '@/stores/stream'
-import { dateFormatter } from '@/modules/convertDate'
 
 
 const store = useStreamStore()
@@ -11,7 +10,7 @@ const route = useRoute()
 
 
 onMounted(() => {
-  store.streamId = route.params.id
+  store.streamId = <string>route.params.id
 })
 </script>
 
