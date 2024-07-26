@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import Dict
 
 from .data import streams
 from .stream import CreateStream, Stream
