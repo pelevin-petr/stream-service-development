@@ -7,7 +7,7 @@ from ..stream import Stream, CreateStream
 
 
 class StreamsService:
-    def sql_request(self, request: str, params: Any = None, need_return: bool = True) -> List[Tuple[Any]] | list:
+    def sql_request(self, request: str, params: List[Any] = None, need_return: bool = True) -> List[Tuple[Any]] | list:
         connection = psycopg2.connect(**config.DB_PARAMS)
         result = []
 
@@ -35,7 +35,6 @@ class StreamsService:
                                     )
         if not response:
             return 'Id стрима не действителен'
-        print(response)
         return {str(response[0][0]): Stream(id=str(response[0][0]), title=response[0][1], description=response[0][2])}
 
     def create(self, stream: CreateStream) -> str:
@@ -66,7 +65,7 @@ class StreamsService:
                          )
         return "Стрим успешно удален"
 
-    def delete_all(self) -> str:
+    def drop(self) -> str:
         self.sql_request("""DELETE FROM stream_service_data_test""", need_return=False)
         return "Таблица успешно очищена"
 
