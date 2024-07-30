@@ -6,7 +6,6 @@ from pydantic import ValidationError
 from fastapi.responses import JSONResponse
 
 from src.db_orm.service import streams_service
-from src.stream import CreateStream
 
 app = FastAPI(
     title="Stream Service",
@@ -24,7 +23,7 @@ async def validation_exception_handler(request: Request, exc: ValidationError) -
 
 
 @router.get("/streams")
-def read_streams():
+def read_streams() -> list[dict] | str:
     streams = streams_service.get_all()
     if not streams:
         return "Streams not found"
@@ -32,7 +31,7 @@ def read_streams():
 
 
 @router.get("/streams/{stream_id}")
-def read_stream(stream_id: str):
+def read_stream(stream_id: str) -> str | dict:
     stream = streams_service.get_by_id(stream_id)
     if not stream:
         return "Stream not found"
@@ -40,12 +39,12 @@ def read_stream(stream_id: str):
 
 
 @router.post("/streams")
-def create_stream(stream: CreateStream):
-    return streams_service.create(stream)
+def create_stream(title: str, description: str):
+    return streams_service.create(title, description)
 
 
 @router.put("/streams")
-def update_stream(stream_id: str, title: str, description: str):
+def update_stream(stream_id: str, title: str, description: str) -> str | dict:
     stream = streams_service.update(stream_id, title, description)
     if stream is None:
         return 'Stream does not exist'
@@ -53,7 +52,7 @@ def update_stream(stream_id: str, title: str, description: str):
 
 
 @router.delete("/streams")
-def delete_stream(stream_id: str):
+def delete_stream(stream_id: str) -> str | dict:
     stream = streams_service.delete(stream_id)
     if stream is None:
         return "Stream does not exist"

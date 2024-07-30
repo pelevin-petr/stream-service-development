@@ -2,7 +2,6 @@ from sqlalchemy import select
 
 from src.db_orm.database import engine, session_factory
 from src.db_orm.models import Base, StreamsOrm
-from src.stream import CreateStream
 
 
 class StreamsService:
@@ -11,7 +10,7 @@ class StreamsService:
         Base.metadata.create_all(engine)
 
     @staticmethod
-    def get_all():
+    def get_all() -> list:
         with session_factory() as session:
             query = select(StreamsOrm)
             result = session.execute(query)
@@ -29,32 +28,30 @@ class StreamsService:
             return streams
 
     @staticmethod
-    def get_by_id(stream_id: str):
+    def get_by_id(stream_id: str) -> dict | None:
         with session_factory() as session:
-            query = select(StreamsOrm, stream_id)
+            query = (
+                select(StreamsOrm)
+                .where(StreamsOrm.id == int(stream_id))
+            )
             result = session.execute(query)
-            stream = result.one_or_none()
+            stream = result.all()
 
-            if stream is None:
+            if not stream:
                 return
-
             return {
-                'id': stream.id,
-                'title': stream.title,
-                'description': stream.description,
+                'id': str(stream[0][0].id),
+                'title': stream[0][0].title,
+                'description': stream[0][0].description,
             }
 
     @staticmethod
-    def create(stream: CreateStream = CreateStream(title='123', description='123')):
+    def create(title: str, description: str) -> dict:
         with session_factory() as session:
-            stream = StreamsOrm(title=stream.title, description=stream.description)
+            stream = StreamsOrm(title=title, description=description)
             session.add(stream)
             session.commit()
-            print({
-                'id': stream.id,
-                'title': stream.title,
-                'description': stream.description,
-            })
+
             return {
                 'id': stream.id,
                 'title': stream.title,
@@ -62,7 +59,7 @@ class StreamsService:
             }
 
     @staticmethod
-    def update(stream_id: str, new_title: str, new_description: str):
+    def update(stream_id: str, new_title: str, new_description: str) -> dict | None:
         with session_factory() as session:
             stream = session.get(StreamsOrm, stream_id)
 
@@ -80,7 +77,7 @@ class StreamsService:
             }
 
     @staticmethod
-    def delete(stream_id: str):
+    def delete(stream_id: str) -> dict | None:
         with session_factory() as session:
             stream = session.get(StreamsOrm, stream_id)
 
@@ -98,4 +95,3 @@ class StreamsService:
 
 
 streams_service = StreamsService()
-print(streams_service.create_tables())
