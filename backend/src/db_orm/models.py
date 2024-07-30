@@ -16,6 +16,7 @@ class Base(DeclarativeBase):
 
         return f"<{self.__class__.__name__} {', '.join(cols)}>"
 
+
 class StreamsOrm(Base):
     __tablename__ = "stream_service_data_test_ORM"
 

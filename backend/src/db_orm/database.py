@@ -1,5 +1,5 @@
-from sqlalchemy import String, create_engine
-from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 DB_HOST = "localhost"
 DB_PORT = "5432"
@@ -11,7 +11,7 @@ DATABASE_URL_psycopg = f"postgresql+psycopg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_
 
 engine = create_engine(
     url=DATABASE_URL_psycopg,
-    echo=True,
+    echo=False,
 )
 
 session_factory = sessionmaker(engine)

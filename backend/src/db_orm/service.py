@@ -1,7 +1,8 @@
 from sqlalchemy import select
 
-from backend.src.db_orm.database import engine, session_factory
-from backend.src.db_orm.models import Base, StreamsOrm
+from src.db_orm.database import engine, session_factory
+from src.db_orm.models import Base, StreamsOrm
+from src.stream import CreateStream
 
 
 class StreamsService:
@@ -15,26 +16,86 @@ class StreamsService:
             query = select(StreamsOrm)
             result = session.execute(query)
             res = result.scalars().all()
-            print(f"{res}")
+            streams = []
+
+            for row in res:
+                stream = {
+                    'id': row.id,
+                    'title': row.title,
+                    'description': row.description,
+                }
+                streams.append(stream)
+
+            return streams
 
     @staticmethod
     def get_by_id(stream_id: str):
         with session_factory() as session:
-            query = (
-                select(StreamsOrm)
-                .where(StreamsOrm.id == stream_id)
-            )
-            session.execute(query)
-            return session.fetchall()
+            query = select(StreamsOrm, stream_id)
+            result = session.execute(query)
+            stream = result.one_or_none()
+
+            if stream is None:
+                return
+
+            return {
+                'id': stream.id,
+                'title': stream.title,
+                'description': stream.description,
+            }
 
     @staticmethod
-    def create_stream():
+    def create(stream: CreateStream = CreateStream(title='123', description='123')):
         with session_factory() as session:
-            worker_jack = StreamsOrm(title="ORM", description="ORM descr")
-            session.add_all([worker_jack])
+            stream = StreamsOrm(title=stream.title, description=stream.description)
+            session.add(stream)
+            session.commit()
+            print({
+                'id': stream.id,
+                'title': stream.title,
+                'description': stream.description,
+            })
+            return {
+                'id': stream.id,
+                'title': stream.title,
+                'description': stream.description,
+            }
+
+    @staticmethod
+    def update(stream_id: str, new_title: str, new_description: str):
+        with session_factory() as session:
+            stream = session.get(StreamsOrm, stream_id)
+
+            if stream is None:
+                return
+
+            stream.title = new_title
+            stream.description = new_description
             session.commit()
 
+            return {
+                'id': stream.id,
+                'title': stream.title,
+                'description': stream.description,
+            }
 
-stream_service = StreamsService()
-stream_service.create_tables()
-stream_service.get_all()
+    @staticmethod
+    def delete(stream_id: str):
+        with session_factory() as session:
+            stream = session.get(StreamsOrm, stream_id)
+
+            if stream is None:
+                return
+
+            session.delete(stream)
+            session.commit()
+
+            return {
+                'id': stream.id,
+                'title': stream.title,
+                'description': stream.description,
+            }
+
+
+streams_service = StreamsService()
+print(streams_service.create_tables())
