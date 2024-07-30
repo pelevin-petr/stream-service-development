@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: my_postgres_db
+    environment:
+      POSTGRES_PASSWORD: 1111pelevin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+
+#  app:
+#    container_name: my_python_app
+#    depends_on:
+#      - db
+#    environment:
+#      DATABASE_URL: postgresql+psycopg://postgres:1111pelevin@5432:5432/postgres
+#    ports:
+#      - "8000:8000"
+#    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+
+volumes:
+  postgres_data:
