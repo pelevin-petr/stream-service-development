@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
 class BaseStream(BaseModel):
@@ -11,4 +11,6 @@ class CreateStream(BaseStream):
 
 
 class Stream(BaseStream):
-    id: str
+    id: int
+
+    model_config = ConfigDict(from_attributes=True)
