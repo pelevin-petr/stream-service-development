@@ -3,28 +3,25 @@ import { defineStore } from 'pinia'
 import type { Stream } from '@/modules/streamInterface'
 
 export const useStreamStore = defineStore('stream', () => {
-  const streamId = ref<string>('')
+  const streamId = ref<number>()
   const stream = ref<Stream>()
 
-  watch(streamId, async (newStreamId?: string) => {
-    if (!newStreamId) {
-      stream.value = undefined
-      return
-    } 
-                                                            //streamId.value(так было изначально)
-    const res = await fetch(`/api/streams/${newStreamId}`)
-
-    if (!res.ok) {
-      stream.value = undefined
-      return
-    }
-
-    stream.value = await res.json()
-
-    if (stream.value !== undefined) {
-      stream.value = stream.value[streamId.value]
-    }
-  })
-
+  // watch(streamId, async (newStreamId?: number) => {
+  //   if (!newStreamId) {
+  //     stream.value = undefined
+  //     return
+  //   }
+  //                                                           //streamId.value(так было изначально)
+  //   const res = await fetch(`/api/streams/${newStreamId}`)
+  //
+  //   if (!res.ok) {
+  //     stream.value = undefined
+  //     return
+  //   }
+  //
+  //   stream.value = await res.json()
+  //
+  // })
+  //
   return { stream, streamId }
 })

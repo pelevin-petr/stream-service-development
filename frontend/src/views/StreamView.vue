@@ -1,23 +1,36 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import { useStreamStore } from '@/stores/stream'
+import mpegts from 'mpegts.js'
 
 
 const store = useStreamStore()
 const route = useRoute()
 
+const video = ref<HTMLVideoElement | null>(null)
 
 onMounted(() => {
-  store.streamId = <string>route.params.id
+  store.streamId = +route.params.id
+  
+  if (mpegts.getFeatureList().mseLivePlayback) {
+    let player = mpegts.createPlayer({
+      type: 'mse',  // could also be mpegts, m2ts, flv
+      isLive: true,
+      url: `http://127.0.0.1:8080/live/${store.streamId}.flv`
+    })
+    player.attachMediaElement(video.value!)
+    player.load()
+    player.play()
+  }
 })
 </script>
 
 <template>
   <div class="flex flex-col items-center">
-    <video class="w-full bg-gray-600 md:rounded-2xl" controls>
-      <source src="@/assets/img/videoplayback%20(1).mp4" type="video/mp4">
+    <video ref="video" class="w-full bg-gray-600 md:rounded-2xl" controls autoplay muted>
+<!--      <source src="@/assets/img/videoplayback%20(1).mp4" type="video/mp4">-->
       Your browser does not support the video tag.
     </video>
 
