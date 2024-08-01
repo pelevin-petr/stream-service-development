@@ -9,7 +9,12 @@ services:
     ports:
       - "5433:5432"
 
-
+  srs:
+    image: ossrs/srs:6
+    ports:
+      - "1935:1935"
+      - "1985:1985"
+      - "8080:8080"
 #  app:
 #    container_name: my_python_app
 #    depends_on:
