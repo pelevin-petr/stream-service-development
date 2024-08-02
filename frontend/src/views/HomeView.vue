@@ -10,7 +10,7 @@ onMounted(async () => {
   const response = await fetch('http://127.0.0.1:1985/api/v1/streams/')
   const aboutStreams = await response.json()
   
-  const streamsIds = aboutStreams.streams.filter((s: any) => {s.publich.active})
+  const streamsIds = aboutStreams.streams.filter((stream: any) => stream.publish.active)
                                          .map((s: any) => s.name)
   
   const streamsPromises = streamsIds.map(async (id: string) => {

@@ -4,6 +4,7 @@ import HomeView from '@/views/HomeView.vue'
 import StreamView from '@/views/StreamView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import LoginView from '@/views/LoginView.vue'
+import CreateStream from '@/views/CreateStream.vue'
 
 
 const routes = [
@@ -11,6 +12,7 @@ const routes = [
   { path: '/registration', component: RegisterView, name: 'registration' },
   { path: '/authorization', component: LoginView, name: 'authorization' },
   { path: '/streams/:id', component: StreamView, name: 'streams' },
+  { path: '/create-streams', component: CreateStream, name: 'create-streams' },
 ]
 
 export const router = createRouter({

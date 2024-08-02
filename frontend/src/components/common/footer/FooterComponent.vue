@@ -9,7 +9,7 @@
       <nav class="mt-2">
         <a href="#" class="text-blue-500 hover:underline mx-2 text-sm">Главная</a>
         <a href="#" class="text-blue-500 hover:underline mx-2 text-sm">Городa</a>
-        <a href="#" class="text-blue-500 hover:underline mx-2 text-sm">Автошколы</a>
+        <a href="#" class="text-blue-500 hover:underline mx-2 text-sm">Создать стрим</a>
       </nav>
     </div>
   </footer>
