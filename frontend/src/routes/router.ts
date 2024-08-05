@@ -4,7 +4,7 @@ import HomeView from '@/views/HomeView.vue'
 import StreamView from '@/views/StreamView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import LoginView from '@/views/LoginView.vue'
-import CreateStream from '@/views/CreateStream.vue'
+import CreateStream from '@/views/CreateDeleteStream.vue'
 
 
 const routes = [
