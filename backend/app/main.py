@@ -1,7 +1,8 @@
-from fastapi import FastAPI, APIRouter, Request, status, HTTPException
+from fastapi import FastAPI, APIRouter, Request, status, HTTPException, Header
 from fastapi.encoders import jsonable_encoder
 from pydantic import ValidationError
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from db_orm.service import streams_service
 from stream import Stream, CreateStream
@@ -12,8 +13,15 @@ app = FastAPI(
 
 router = APIRouter(prefix='/api')
 
-
 streams_service.create_tables()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.exception_handler(ValidationError)
