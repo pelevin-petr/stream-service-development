@@ -6,8 +6,8 @@ import HeaderComponent from '@/components/common/header/HeaderComponent.vue'
 <template>
   <div class="flex flex-col min-h-full justify-between ">
     <div class="flex flex-col items-center ">
-      <HeaderComponent class="w-full" />
-      <RouterView class="dark:bg-gray-800 mt-8 md:px-8 w-full flex justify-around" />
+     <HeaderComponent class="w-full" />            <!--   flex justify-around-->
+      <RouterView class="dark:bg-gray-800 mt-8 md:px-8 w-full " />
     </div>
     
     <FooterComponent class="mt-8" />

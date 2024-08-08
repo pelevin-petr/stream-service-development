@@ -6,6 +6,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { type IFormCreate, FORM_REQUIRED_FIELD, type IFormDelete } from '@/validation/helpers'
 import { useValidationErrors } from '@/validation/useValidationErrors'
 import type { Stream } from '@/modules/streamInterface'
+import SteamsList from '@/components/SteamsList.vue'
 
 
 const id = ref<number>()
@@ -113,112 +114,104 @@ const clearCreateForm = () => {
   $vCreate.value.description.$model = ''
 }
 </script>
-<template>
-  <div class="h-[80vh] px-2 flex items-center justify-center">
-    <div class="min-w-[350px] max-w-[750px] rounded-2xl shadow-xl flex flex-col p-4">
-      <form
-        @submit.prevent="validateCreating()"
-        class="w-full"
-      >
-        <div class="text-center mb-12">
-          <h3 class="text-xl leading-6 text-black">
-            Заполните поля, чтобы создать стрим и получить его идентификационный номер
-          </h3>
-        </div>
-        
-        <div class="mt-4">
-          <label class="block text-sm font-medium leading-6 text-gray-900">Номер машины</label>
-          <input type="text"
-                 v-model="$vCreate.title.$model"
-                 placeholder="A000AA"
-                 class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-600 sm:text-sm">
-        </div>
-        <div
-          v-if="errorsCreate.title && submittedCreating"
-          class="text-red-600 text-sm pl-1 italic"
-        >
-          {{ errorsCreate.title }}
-        </div>
-        
-        <div class="mt-4">
-          <label class="block text-sm font-medium leading-6 text-gray-900">Описание</label>
-          <input type="text"
-                 v-model="$vCreate.description.$model"
-                 class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-600 sm:text-sm">
-        </div>
-        
-        <div class="flex justify-around w-full mt-4">
-          <button type="button"
-                  @click="clearCreateForm"
-                  class="px-6 py-1 mt-2 font-medium rounded-lg text-md text-center leading-6 text-gray-900 bg-gray-200 hover:bg-gray-400 focus:ring-4 focus:ring-gray-300">
-            Очистить
-          </button>
-          
-          <button type="submit"
-                  class="px-6 mt-2 py-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md text-center">
-            Создать
-          </button>
-        </div>
-        
-        <div
-          v-if="isCreated"
-          class="mt-6 text-center"
-        >
-          <div class="text-md">
-            Ваш идентификационный номер: <span class="text-black font-semibold font-mono">{{ id }}</span>
-          </div>
-        </div>
-        
-        <div
-          v-else
-          class="text-red-600 text-center mt-6 text-md"
-        >
-          Во время выполнения запроса произошла ошибка. Попробуйте сначала.
-        </div>
-        
-        <div class="mt-16 text-center">
-          <h3 class="text-xl leading-6 text-black mb-5">
-            Введите идентификационный номер для удаления стрима
-          </h3>
-          
-          <form @submit.prevent="validateDeleting">
-            <input type="number"
-                   v-model="$vDelete.deleteId.$model"
-                   class="block mx-auto mb-2 w-full max-w-[400px] rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-600 sm:text-sm">
-            
-            <div
-              v-if="errorsDelete.deleteId && submittedDeleting"
-              class="text-red-600 text-sm pl-1 italic"
-            >
-              {{ errorsDelete.deleteId }}
-            </div>
-            
-            <button
-              type="submit"
-              class="px-6 mt-2 py-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md text-center"
-            >
-              Удалить
-            </button>
-          </form>
-          
-          <div
-            class="mt-4"
-            v-if="isDeleted">
-            Стрим c номером машины «{{ deletedStream?.title }}» был успешно удален
-          </div>
-          
-          <div
-            v-else-if="deletionError"
-            class="text-red-600 text-center mt-4 text-md">
-            Стрим с данным идентификационным номером не найден в базе.
-          </div>
-        </div>
-      </form>
-    </div>
+<template v-cloak>
+  <div class="relative flex">
+<!--    <div class="flex-1 ml-4 h-[80vh] px-2 flex items-center justify-center">-->
+<!--      <div class="min-w-[350px] max-w-[750px] rounded-2xl shadow-xl flex flex-col p-4">-->
+<!--        <form @submit.prevent="validateCreating" class="w-full">-->
+<!--          <div class="text-center mb-12">-->
+<!--            <h3 class="text-xl leading-6 text-black">-->
+<!--              Заполните поля, чтобы создать стрим и получить его идентификационный номер-->
+<!--            </h3>-->
+<!--          </div>-->
+<!--          -->
+<!--          <div class="mt-4">-->
+<!--            <label class="block text-sm font-medium leading-6 text-gray-900">Номер машины</label>-->
+<!--            <input type="text"-->
+<!--                   v-model="$vCreate.title.$model"-->
+<!--                   placeholder="A000AA"-->
+<!--                   class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-600 sm:text-sm">-->
+<!--          </div>-->
+<!--          <div v-if="errorsCreate.title && submittedCreating" class="text-red-600 text-sm pl-1 italic">-->
+<!--            {{ errorsCreate.title }}-->
+<!--          </div>-->
+<!--          -->
+<!--          <div class="mt-4">-->
+<!--            <label class="block text-sm font-medium leading-6 text-gray-900">Описание</label>-->
+<!--            <input type="text"-->
+<!--                   v-model="$vCreate.description.$model"-->
+<!--                   class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-600 sm:text-sm">-->
+<!--          </div>-->
+<!--          -->
+<!--          <div class="flex justify-around w-full mt-4">-->
+<!--            <button type="button"-->
+<!--                    @click="clearCreateForm"-->
+<!--                    class="px-6 py-1 mt-2 font-medium rounded-lg text-md text-center leading-6 text-gray-900 bg-gray-200 hover:bg-gray-400 focus:ring-4 focus:ring-gray-300">-->
+<!--              Очистить-->
+<!--            </button>-->
+<!--            -->
+<!--            <button type="submit"-->
+<!--                    class="px-6 mt-2 py-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md text-center">-->
+<!--              Создать-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          -->
+<!--          <div v-if="isCreated" class="mt-6 text-center">-->
+<!--            <div class="text-md">-->
+<!--              Ваш идентификационный номер: <span class="text-black font-semibold font-mono">{{ id }}</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          -->
+<!--          <div v-else class="text-red-600 text-center mt-6 text-md">-->
+<!--            Во время выполнения запроса произошла ошибка. Попробуйте сначала.-->
+<!--          </div>-->
+<!--          -->
+<!--          <div class="mt-16 text-center">-->
+<!--            <h3 class="text-xl leading-6 text-black mb-5">-->
+<!--              Введите идентификационный номер для удаления стрима-->
+<!--            </h3>-->
+<!--            -->
+<!--            <form @submit.prevent="validateDeleting">-->
+<!--              <input type="number"-->
+<!--                     v-model="$vDelete.deleteId.$model"-->
+<!--                     class="block mx-auto mb-2 w-full max-w-[400px] rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-600 sm:text-sm">-->
+<!--              -->
+<!--              <div v-if="errorsDelete.deleteId && submittedDeleting" class="text-red-600 text-sm pl-1 italic">-->
+<!--                {{ errorsDelete.deleteId }}-->
+<!--              </div>-->
+<!--              -->
+<!--              <button type="submit"-->
+<!--                      class="px-6 mt-2 py-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md text-center">-->
+<!--                Удалить-->
+<!--              </button>-->
+<!--            </form>-->
+<!--            -->
+<!--            <div class="mt-4" v-if="isDeleted">-->
+<!--              Стрим c номером машины «{{ deletedStream?.title }}» был успешно удален-->
+<!--            </div>-->
+<!--            -->
+<!--            <div v-else-if="deletionError" class="text-red-600 text-center mt-4 text-md">-->
+<!--              Стрим с данным идентификационным номером не найден в базе.-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+    
+    <aside class="hidden md:block md:mt-[70px] md:w-[300px] xl:w-[350px] xl:ml-6 xl:top-0 xl:h-full">
+      <SteamsList v-cloak/>
+    </aside>
   </div>
-
+  
+  <div class="md:hidden rounded-xl w-full px-5">
+    <aside class="w-[100%]">
+      <SteamsList/>
+    </aside>
+  </div>
 </template>
 
 <style scoped>
-
+[v-cloak] {
+  display: none;
+}
 </style>
