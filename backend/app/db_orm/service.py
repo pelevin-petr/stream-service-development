@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from sqlalchemy import select
 
 from db_orm.database import engine, session_factory
@@ -50,9 +52,10 @@ class StreamsService:
 
             stream.title = new_stream.title
             stream.description = new_stream.description
+            response = deepcopy(stream)
             session.commit()
 
-            return stream
+            return response
 
     @staticmethod
     def delete(stream_id: int) -> Stream | None:

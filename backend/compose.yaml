@@ -17,7 +17,6 @@ services:
       - "8080:8080"
 #  app:
 #    container_name: my_python_app
-#    depends_on:
 #      - db
 #    environment:
 #      DATABASE_URL: postgresql+psycopg://postgres:1111pelevin@5432:5432/postgres
