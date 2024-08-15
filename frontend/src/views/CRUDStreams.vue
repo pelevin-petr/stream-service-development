@@ -1,15 +1,20 @@
 <script setup lang="ts" defer>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import type { Stream } from '@/modules/streamInterface'
+import TheModal from '@/components/TheModal.vue'
+import CreateDeleteStream from '@/components/TheModalCreate.vue'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
 
 
 const streams = ref<Stream[]>()
-const selectedStream = ref<Stream | null>(null)
 const search = ref<string>()
-
+const model = ref()
+const isOpenCreateModal = ref(false)
+const loading = ref<boolean>(true)
 
 setInterval(async () => {
+  
   const res = await fetch(`http://127.0.0.1:8000/api/streams`)
   
   if (!res.ok) {
@@ -19,14 +24,21 @@ setInterval(async () => {
   streams.value = await res.json()
 }, 1000)
 
-const openStreamInfo = (selectedStream: Stream) => {
-
-}
+const filteredStreams = computed(() => {
+  if (!streams.value) return []
+  
+  if (!search.value) {
+    return streams.value
+  }
+  if (!isNaN(+search.value)) {
+    return streams.value.filter((stream) => stream.id.toString().startsWith(search.value!))
+  }
+  return streams.value.filter((stream) => stream.title.startsWith(search.value!))
+})
 </script>
 
 <template>
-  <div class="main ">
-    
+  <div class="main">
     <div class="w-full">
       <div class="flex justify-between">
         <form class="min-w-80 ">
@@ -47,7 +59,8 @@ const openStreamInfo = (selectedStream: Stream) => {
             />
             <button
               class="text-white absolute end-1 bottom-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3.5 py-1.5 dark:bg-gray-800 dark:hover:bg-gray-900 dark:focus:ring-blue-800"
-              type="button">
+              type="button"
+            >
               Поиск
             </button>
           </div>
@@ -55,57 +68,49 @@ const openStreamInfo = (selectedStream: Stream) => {
         
         <button
           class="text-white end-1 bottom-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-1.5 dark:bg-gray-800 dark:hover:bg-gray-900 dark:focus:ring-blue-800"
-          type="button">
+          type="button"
+          @click="isOpenCreateModal = !isOpenCreateModal">
           Создать
         </button>
       </div>
       
-      <div class="mt-1 grid grid-cols-3 text-xl font-semibold">
-        <div class="grid_element titles">Номер машины</div>
-        <div class="grid_element titles">Описание</div>
-        <div class="grid_element titles">Id стрима</div>
+      <div v-if="filteredStreams && filteredStreams.length > 0">
+        <div class="mt-1 grid grid-cols-3 text-xl font-semibold">
+          <div class="grid_element titles">Номер машины</div>
+          <div class="grid_element titles">Описание</div>
+          <div class="grid_element titles">Id стрима</div>
+        </div>
+        
+        <div class="grid grid-cols-3" v-for="stream in filteredStreams" :key="stream.id">
+          <button @click="model.openStreamInfo(stream)">
+            <div class="grid_element">{{ stream.title }}</div>
+          </button>
+          <button @click="model.openStreamInfo(stream)">
+            <div class="grid_element">{{ stream.description }}</div>
+          </button>
+          <button @click="model.openStreamInfo(stream)">
+            <div class="grid_element">{{ stream.id }}</div>
+          </button>
+        </div>
       </div>
       
-      <div class="grid grid-cols-3" v-for="stream in streams" :key="stream.id">
-        <button @click="openStreamInfo(stream)">
-          <div class="grid_element">{{ stream.title }}</div>
-        </button>
-        <button @click="openStreamInfo(stream)">
-          <div class="grid_element">{{ stream.description }}</div>
-        </button>
-        <button @click="openStreamInfo(stream)">
-          <div class="grid_element">{{ stream.id }}</div>
-        </button>
+      <div v-else-if="loading" class="my-[50px]">
+        <LoadingSpinner :is-loading="loading" />
       </div>
-    
-    </div>
-    
-    <div class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Модальное окно</h2>
-        <p>Это пример модального окна.</p>
+      
+      <div v-else class="text-center my-[50px] text-xl font-semibold text-gray-700">
+        Стримов по данному запросу не найдено
       </div>
     </div>
+    
+    <TheModal v-model="model" />
+    <CreateDeleteStream v-model="isOpenCreateModal" />
   </div>
 
 
 </template>
 
 <style scoped>
-.main {
-  display: flex;
-  
-}
-
-.setka {
-  transition: margin-right 0.3s ease;
-}
-
-.setka.shifted {
-  margin-right: 500px;
-}
-
 .grid_element {
   min-height: 45px;
   background: rgb(209 213 219);
@@ -119,66 +124,5 @@ const openStreamInfo = (selectedStream: Stream) => {
   background-color: rgb(156 163 175);
 }
 
-.aside-menu {
-  width: 500px;
-  height: 620px;
-  background: rosybrown;
-  position: fixed;
-  top: 104px;
-  right: -500px;
-  transition: right 0.3s ease;
-  overflow: auto;
-  padding: 20px;
-}
 
-.aside-menu.open {
-  right: 0;
-}
-
-.close-btn {
-  background: red;
-  color: white;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.modal {
-  display: none; /* Скрыть модальное окно по умолчанию */
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-/* Стиль для содержимого модального окна */
-.modal-content {
-  background-color: #fefefe;
-  margin: 30% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-/* Стиль для кнопки закрытия */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
 </style>

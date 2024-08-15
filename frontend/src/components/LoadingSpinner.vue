@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner border-4 border-gray-200 border-t-blue-500 rounded-full w-10 h-10 mx-auto" v-if="isLoading"></div>
+  <div class="spinner border-4 border-gray-200 border-t-blue-500 rounded-full w-10 h-10 mx-auto my-auto" v-if="isLoading"></div>
 </template>
 
 <script setup>
