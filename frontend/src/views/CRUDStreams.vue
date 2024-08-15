@@ -35,6 +35,17 @@ const filteredStreams = computed(() => {
   }
   return streams.value.filter((stream) => stream.title.startsWith(search.value!))
 })
+
+const deleteStream = async (stream: Stream) => {
+  const res = await fetch(`http://127.0.0.1:8000/api/streams?stream_id=${stream.id}`, {
+    method: 'DELETE',
+    headers: { 'content-type': 'application/json' }
+  })
+
+  if (!res.ok) {
+    return
+  }
+}
 </script>
 
 <template>
@@ -81,7 +92,7 @@ const filteredStreams = computed(() => {
           <div class="grid_element titles">Id стрима</div>
         </div>
         
-        <div class="grid grid-cols-3" v-for="stream in filteredStreams" :key="stream.id">
+        <div class="relative grid grid-cols-3" v-for="stream in filteredStreams" :key="stream.id">
           <button @click="model.openStreamInfo(stream)">
             <div class="grid_element">{{ stream.title }}</div>
           </button>
@@ -90,6 +101,12 @@ const filteredStreams = computed(() => {
           </button>
           <button @click="model.openStreamInfo(stream)">
             <div class="grid_element">{{ stream.id }}</div>
+          </button>
+          <button
+            class="absolute w-[30px] right-[5px] top-[7px]"
+            @click="deleteStream(stream)"
+          >
+            <img src="../assets/img/trash.svg" alt=""/>
           </button>
         </div>
       </div>

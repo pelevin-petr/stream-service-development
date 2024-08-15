@@ -44,28 +44,13 @@ const createStream = async () => {
   id.value = stream.id
   isCreated.value = true
 }
-// const deleteStream = async () => {
-//   const res = await fetch(`http://127.0.0.1:8000/api/streams?stream_id=${$vDelete.value.deleteId.$model}`, {
-//     method: 'DELETE',
-//     headers: { 'content-type': 'application/json' }
-//   })
-//
-//   if (!res.ok) {
-//     deletionError.value = true
-//     isDeleted.value = false
-//     return
-//   }
-//
-//   deletedStream.value = await res.json()
-//   isDeleted.value = true
-// }
 const clearCreateForm = () => {
   $vCreate.value.title.$model = ''
   $vCreate.value.description.$model = ''
 }
 
 const handleOutsideClick = (event: MouseEvent) => {
-  if (event.composedPath().includes(modalOverlay.value)) {
+  if (event.composedPath().includes(modalOverlay.value!)) {
     isOpen.value = false
   }
 }
