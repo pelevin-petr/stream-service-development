@@ -1,6 +1,7 @@
 from copy import deepcopy
 
 from sqlalchemy import select
+from sqlalchemy.sql.operators import or_
 
 from db_orm.database import engine, session_factory
 from db_orm.models import Base, StreamsOrm
@@ -13,9 +14,21 @@ class StreamsService:
         Base.metadata.create_all(engine)
 
     @staticmethod
-    def get_all() -> list:
+    def get_all(filter_params: str | None) -> list:
         with session_factory() as session:
             query = select(StreamsOrm)
+
+            if filter_params is not None:
+                if filter_params.isdigit():
+                    query = query.where(StreamsOrm.id == int(filter_params))
+                else:
+                    query = query.where(
+                        or_(
+                            StreamsOrm.title.like(f"%{filter_params}%"),
+                            StreamsOrm.description.like(f"%{filter_params}%")
+                        )
+                    )
+
             result = session.execute(query)
             res = result.scalars().all()
             return res

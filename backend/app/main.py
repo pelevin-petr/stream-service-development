@@ -17,7 +17,7 @@ streams_service.create_tables()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5174", "http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -33,8 +33,8 @@ async def validation_exception_handler(request: Request, exc: ValidationError) -
 
 
 @router.get("/streams", response_model=list[Stream])
-def read_streams():
-    streams = streams_service.get_all()
+def read_streams(filter_params: str | None = None):
+    streams = streams_service.get_all(filter_params)
     if not streams:
         raise HTTPException(status_code=404, detail="Streams not found")
     return streams
