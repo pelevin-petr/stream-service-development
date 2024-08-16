@@ -9,7 +9,7 @@
       <li class="mt-2">
         <RouterLink to="/">
           <a aria-current="page"
-             class="block py-2 px-3 text-white bg-blue-700 rounded xl:bg-transparent xl:text-blue-700 dark:text-white dark:bg-extra-neutral-700 xl:p-0 "
+             class="block py-2 px-3 text-gray-900 bg-blue-700 rounded xl:bg-transparent xl:hover:text-blue-700 dark:text-white dark:bg-extra-neutral-700 xl:p-0 "
              href="#">Главная</a>
         </RouterLink>
       </li>
@@ -19,7 +19,7 @@
           href="#">Города</a>
       </li>
       <li class="mt-2">
-        <RouterLink to="create-streams"
+        <RouterLink to="/create-streams"
           class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 xl:hover:bg-transparent xl:hover:text-blue-700 xl:p-0 xl:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white xlZz:dark:hover:bg-transparent dark:border-gray-700"
           href="#">Создать стрим</RouterLink>
       </li>
