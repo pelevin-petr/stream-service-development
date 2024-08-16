@@ -2,16 +2,19 @@
 import { computed, ref } from 'vue'
 
 import type { Stream } from '@/modules/streamInterface'
-import TheModal from '@/components/TheModal.vue'
-import CreateDeleteStream from '@/components/TheModalCreate.vue'
+import TheModal from '@/components/modals/TheModal.vue'
+import CreateDeleteStream from '@/components/modals/TheModalCreate.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import ThePopUpDeleting from '@/components/modals/ThePopUpDeleting.vue'
 
 
-const streams = ref<Stream[]>()
+const streams = ref<Stream[]>([])
 const search = ref<string>()
 const model = ref()
 const isOpenCreateModal = ref(false)
 const loading = ref<boolean>(true)
+const popupModel = ref()
+
 
 setInterval(async () => {
   
@@ -25,15 +28,16 @@ setInterval(async () => {
 }, 1000)
 
 const filteredStreams = computed(() => {
-  if (!streams.value) return []
+  if (!streams.value) {
+    return []
+  }
   
-  if (!search.value) {
+  const searchValue = search.value
+  
+  if (!searchValue) {
     return streams.value
   }
-  if (!isNaN(+search.value)) {
-    return streams.value.filter((stream) => stream.id.toString().startsWith(search.value!))
-  }
-  return streams.value.filter((stream) => stream.title.startsWith(search.value!))
+  return streams.value.filter((stream) => stream.title.includes(searchValue) || stream.id.toString().includes(searchValue))
 })
 
 const deleteStream = async (stream: Stream) => {
@@ -45,6 +49,9 @@ const deleteStream = async (stream: Stream) => {
   if (!res.ok) {
     return
   }
+  
+  popupModel.value.stream = stream
+  streams.value = streams.value.filter((s) => s.id != stream.id)
 }
 </script>
 
@@ -87,24 +94,24 @@ const deleteStream = async (stream: Stream) => {
       
       <div v-if="filteredStreams && filteredStreams.length > 0">
         <div class="mt-1 grid grid-cols-3 text-xl font-semibold">
+          <div class="grid_element titles">Id стрима</div>
           <div class="grid_element titles">Номер машины</div>
           <div class="grid_element titles">Описание</div>
-          <div class="grid_element titles">Id стрима</div>
         </div>
         
         <div class="relative grid grid-cols-3" v-for="stream in filteredStreams" :key="stream.id">
+          <button @click="model.openStreamInfo(stream)">
+            <div class="grid_element">{{ stream.id }}</div>
+          </button>
           <button @click="model.openStreamInfo(stream)">
             <div class="grid_element">{{ stream.title }}</div>
           </button>
           <button @click="model.openStreamInfo(stream)">
             <div class="grid_element">{{ stream.description }}</div>
           </button>
-          <button @click="model.openStreamInfo(stream)">
-            <div class="grid_element">{{ stream.id }}</div>
-          </button>
           <button
             class="absolute w-[30px] right-[5px] top-[7px]"
-            @click="deleteStream(stream)"
+            @click="deleteStream(stream); popupModel!.openPopup()"
           >
             <img src="../assets/img/trash.svg" alt=""/>
           </button>
@@ -122,6 +129,7 @@ const deleteStream = async (stream: Stream) => {
     
     <TheModal v-model="model" />
     <CreateDeleteStream v-model="isOpenCreateModal" />
+    <ThePopUpDeleting v-model="popupModel"/>
   </div>
 
 

@@ -100,7 +100,7 @@ const closeModal = () => {
       <div class="wrapper">
         
         <div>
-          <img src="../../src/assets/img/modal-car.png" alt="Это изображение не поддерживается вашим браузером"
+          <img src="../../assets/img/modal-car.png" alt="Это изображение не поддерживается вашим браузером"
                class="w-[170px] md:w-[200px] rounded-xl " />
           <div :class="updatedStreamClass">
             <label
