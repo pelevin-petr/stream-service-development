@@ -28,7 +28,7 @@ const closePopup = () => {
 </script>
 <template>
   <div v-if="isVisible"
-       class="popup"
+       class="popup border border-rose-500"
        :class="{ show: isPopupVisible }">
     
     <div class="text-center font-bold mb-[11px]">Стрим успешно удален!</div>
@@ -48,8 +48,8 @@ const closePopup = () => {
   bottom: 20px;
   right: 20px;
   width: 300px;
-  padding: 20px;
-  background-color: #fff;
+  padding: 20px 20px 0;
+  background-color: rgba(228, 184, 184, 0.34);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   z-index: 20;
@@ -67,7 +67,7 @@ const closePopup = () => {
   position: absolute;
   top: 0;
   right: 12px;
-  color: #aaa;
+  color: #686868;
   font-size: 28px;
   font-weight: bold;
 }

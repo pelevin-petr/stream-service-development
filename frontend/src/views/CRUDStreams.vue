@@ -9,21 +9,23 @@ import ThePopUpDeleting from '@/components/modals/ThePopUpDeleting.vue'
 
 
 const streams = ref<Stream[]>([])
-const search = ref<string>()
+const search = ref<string>('')
 const model = ref()
 const isOpenCreateModal = ref(false)
 const loading = ref<boolean>(true)
+
 const popupModel = ref()
 
 
 setInterval(async () => {
-  
-  const res = await fetch(`http://127.0.0.1:8000/api/streams`)
+  const res = await fetch(`http://127.0.0.1:8000/api/streams?filter_params=${search.value}`)
   
   if (!res.ok) {
+    loading.value = false
     return
   }
-  
+  loading.value = true
+
   streams.value = await res.json()
 }, 1000)
 
@@ -45,7 +47,7 @@ const deleteStream = async (stream: Stream) => {
     method: 'DELETE',
     headers: { 'content-type': 'application/json' }
   })
-
+  
   if (!res.ok) {
     return
   }
@@ -113,7 +115,7 @@ const deleteStream = async (stream: Stream) => {
             class="absolute w-[30px] right-[5px] top-[7px]"
             @click="deleteStream(stream); popupModel!.openPopup()"
           >
-            <img src="../assets/img/trash.svg" alt=""/>
+            <img src="../assets/img/trash.svg" alt="" />
           </button>
         </div>
       </div>
@@ -129,7 +131,7 @@ const deleteStream = async (stream: Stream) => {
     
     <TheModal v-model="model" />
     <CreateDeleteStream v-model="isOpenCreateModal" />
-    <ThePopUpDeleting v-model="popupModel"/>
+    <ThePopUpDeleting v-model="popupModel" />
   </div>
 
 
