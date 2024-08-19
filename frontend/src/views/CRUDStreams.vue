@@ -22,41 +22,39 @@ setInterval(async () => {
   
   if (!res.ok) {
     loading.value = false
+    streams.value = []
     return
   }
   loading.value = true
-
+  
   streams.value = await res.json()
 }, 1000)
 
-const filteredStreams = computed(() => {
-  if (!streams.value) {
-    return []
-  }
-  
-  const searchValue = search.value
-  
-  if (!searchValue) {
-    return streams.value
-  }
-  return streams.value.filter((stream) => stream.title.includes(searchValue) || stream.id.toString().includes(searchValue))
-})
-
-const deleteStream = async (stream: Stream) => {
-  const res = await fetch(`http://127.0.0.1:8000/api/streams?stream_id=${stream.id}`, {
-    method: 'DELETE',
-    headers: { 'content-type': 'application/json' }
-  })
-  
-  if (!res.ok) {
-    return
-  }
-  
+const deleteStream = (stream: Stream) => {
   popupModel.value.stream = stream
-  streams.value = streams.value.filter((s) => s.id != stream.id)
+  popupModel.value.continueDeleting = true
+  
+  const deleteTimeout = setTimeout(async () => {
+    const res = await fetch(`http://127.0.0.1:8000/api/streams?stream_id=${stream.id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json' }
+    })
+    
+    if (!res.ok) {
+      return
+    }
+    streams.value = streams.value.filter((s) => s.id != stream.id)
+  }, 7000)
+  
+  const interval = setInterval(() => {
+    if (!popupModel.value.continueDeleting) {
+      clearTimeout(deleteTimeout)
+      clearInterval(interval)
+    }
+  })
 }
-</script>
 
+</script>
 <template>
   <div class="main">
     <div class="w-full">
@@ -94,14 +92,14 @@ const deleteStream = async (stream: Stream) => {
         </button>
       </div>
       
-      <div v-if="filteredStreams && filteredStreams.length > 0">
+      <div v-if="streams && streams.length > 0">
         <div class="mt-1 grid grid-cols-3 text-xl font-semibold">
           <div class="grid_element titles">Id стрима</div>
           <div class="grid_element titles">Номер машины</div>
           <div class="grid_element titles">Описание</div>
         </div>
         
-        <div class="relative grid grid-cols-3" v-for="stream in filteredStreams" :key="stream.id">
+        <div class="relative grid grid-cols-3" v-for="stream in streams" :key="stream.id">
           <button @click="model.openStreamInfo(stream)">
             <div class="grid_element">{{ stream.id }}</div>
           </button>

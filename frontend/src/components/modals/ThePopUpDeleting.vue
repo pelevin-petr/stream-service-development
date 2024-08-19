@@ -39,6 +39,10 @@ const closePopup = () => {
     <button @click="closePopup">
       <span class="close">&times;</span>
     </button>
+    
+    <button @click="closePopup(); popupModel.continueDeleting = false" >
+      <div class="mt-[10px] ml-[50px] mb-[10px] text-white p-[4px] rounded-lg bg-red-600 hover:bg-red-700 font-semibold text-lg">Отменить удаление</div>
+    </button>
   
   </div>
 </template>
