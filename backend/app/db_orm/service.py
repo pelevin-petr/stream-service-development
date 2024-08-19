@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from sqlalchemy import select
+from sqlalchemy import select, cast, String
 from sqlalchemy.sql.operators import or_
 
 from db_orm.database import engine, session_factory
@@ -20,7 +20,7 @@ class StreamsService:
 
             if filter_params is not None:
                 if filter_params.isdigit():
-                    query = query.where(StreamsOrm.id == int(filter_params))
+                    query = query.where(cast(StreamsOrm.id, String).like(f"%{filter_params}%"))
                 else:
                     query = query.where(
                         or_(
