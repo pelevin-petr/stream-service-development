@@ -1,5 +1,5 @@
 <script setup lang="ts" defer>
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
 import type { Stream } from '@/modules/streamInterface'
 import TheModal from '@/components/modals/TheModal.vue'
