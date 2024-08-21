@@ -1,11 +1,12 @@
-<script setup lang="ts" defer>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 import type { Stream } from '@/modules/streamInterface'
 import TheModal from '@/components/modals/TheModal.vue'
 import CreateDeleteStream from '@/components/modals/TheModalCreate.vue'
-import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import ThePopUpDeleting from '@/components/modals/ThePopUpDeleting.vue'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import trashSvg from '@/assets/img/trash.svg'
 
 
 const streams = ref<Stream[]>([])
@@ -113,7 +114,7 @@ const deleteStream = (stream: Stream) => {
             class="absolute w-[30px] right-[5px] top-[7px]"
             @click="deleteStream(stream); popupModel!.openPopup()"
           >
-            <img src="../assets/img/trash.svg" alt="" />
+            <img :src="trashSvg" alt="" />
           </button>
         </div>
       </div>

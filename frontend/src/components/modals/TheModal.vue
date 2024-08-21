@@ -3,7 +3,7 @@ import { onUnmounted, ref, nextTick, onMounted } from 'vue'
 
 import type { Stream } from '@/modules/streamInterface'
 import { $vCreate, errorsCreate } from '@/validation/validationCreating'
-
+import carModalImg from '@/assets/img/modal-car.png'
 
 const isOpen = ref(false)
 const newImage = ref<HTMLImageElement | null>()
@@ -100,7 +100,7 @@ const closeModal = () => {
       <div class="wrapper">
         
         <div>
-          <img src="../../assets/img/modal-car.png" alt="Это изображение не поддерживается вашим браузером"
+          <img :src="carModalImg" alt="Это изображение не поддерживается вашим браузером"
                class="w-[170px] md:w-[200px] rounded-xl " />
           <div :class="updatedStreamClass">
             <label
