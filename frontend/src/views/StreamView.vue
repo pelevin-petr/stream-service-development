@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { onMounted, ref } from 'vue'
-
-import { useStreamStore } from '@/stores/stream'
 import mpegts from 'mpegts.js'
 
+import { useStreamStore } from '@/stores/stream'
+import videoplayback from '@/assets/img/videoplayback%20(1).mp4'
 
 const store = useStreamStore()
 const route = useRoute()
@@ -30,7 +30,7 @@ onMounted(() => {
 <template>
   <div class="flex flex-col items-center">
     <video ref="video" class="w-full bg-gray-600 md:rounded-2xl" controls autoplay muted>
-<!--      <source src="@/assets/img/videoplayback%20(1).mp4" type="video/mp4">-->
+<!--      <source :src="videoplayback" type="video/mp4">-->
       Your browser does not support the video tag.
     </video>
 
@@ -39,25 +39,10 @@ onMounted(() => {
         <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Номер машины:</div>
         <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ store.stream?.title }}</div>
       </div>
-<!--      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">-->
-<!--        <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Начало стрима:</div>-->
-<!--        <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ dateFormatter(description?.whenTurnOn)-->
-<!--          }}-->
-<!--        </div>-->
-<!--      </div>-->
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
         <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Описание:</div>
         <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ store.stream?.description }}</div>
       </div>
-<!--      <div v-if="description?.smallDescription"-->
-      <!--           class="flex flex-col sm:flex-row justify-between items-start sm:items-center">-->
-      <!--        <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Описание:</div>-->
-      <!--        <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description?.smallDescription }}</div>-->
-      <!--      </div>-->
-      <!--      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">-->
-      <!--        <div class="text-lg font-bold text-gray-900 dark:text-gray-200">Город:</div>-->
-      <!--        <div class="text-lg text-gray-700 sm:text-right dark:text-gray-100">{{ description?.city }}</div>-->
-      <!--      </div>-->
     </div>
   </div>
 </template>

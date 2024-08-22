@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-
 import { onMounted, ref } from 'vue'
-import type { Stream } from '@/modules/streamInterface'
 
+import type { Stream } from '@/modules/streamInterface'
+import loadingWebp from '@/assets/img/loading.webp'
 
 const streams = ref<Stream[]>([])
 
@@ -28,7 +28,7 @@ onMounted(async () => {
       <div v-for="stream of streams" :key="stream.id"
            class="w-auto min-w-[350px] max-w-[350px] h-[300px] bg-white shadow-lg rounded-2xl overflow-hidden dark:bg-neutral-500 dark:text-gray-100">
         <RouterLink :to="{ name: 'streams', params: { id: stream.id } }">
-          <img src="@/assets/img/loading.webp" alt="This image don't supported by your browser" class="w-full">
+          <img :src="loadingWebp" alt="This image don't supported by your browser" class="w-full">
           <label class="block m-4 " for="video">Номер машины: {{ stream.title }}</label>
         </RouterLink>
       </div>
