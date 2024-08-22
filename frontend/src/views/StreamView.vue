@@ -4,7 +4,6 @@ import { onMounted, ref } from 'vue'
 import mpegts from 'mpegts.js'
 
 import { useStreamStore } from '@/stores/stream'
-import videoplayback from '@/assets/img/videoplayback%20(1).mp4'
 
 const store = useStreamStore()
 const route = useRoute()
@@ -30,7 +29,6 @@ onMounted(() => {
 <template>
   <div class="flex flex-col items-center">
     <video ref="video" class="w-full bg-gray-600 md:rounded-2xl" controls autoplay muted>
-<!--      <source :src="videoplayback" type="video/mp4">-->
       Your browser does not support the video tag.
     </video>
 
