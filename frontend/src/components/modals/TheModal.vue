@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { onUnmounted, ref, nextTick, onMounted } from 'vue'
+import { useKeycloak } from '@josempgon/vue-keycloak'
 
 import type { Stream } from '@/modules/streamInterface'
 import { $vCreate, errorsCreate } from '@/validation/validationCreating'
+import carModalImg from '@/assets/img/modal-car.png'
+const { isAuthenticated } = useKeycloak()
 
 
 const isOpen = ref(false)
@@ -100,7 +103,7 @@ const closeModal = () => {
       <div class="wrapper">
         
         <div>
-          <img src="../../assets/img/modal-car.png" alt="Это изображение не поддерживается вашим браузером"
+          <img :src="carModalImg" alt="Это изображение не поддерживается вашим браузером"
                class="w-[170px] md:w-[200px] rounded-xl " />
           <div :class="updatedStreamClass">
             <label
@@ -157,18 +160,20 @@ const closeModal = () => {
             Отменить
           </button>
         </div>
-        <button
-          class="w-[100px] absolute bottom-[8px] right-[115px] text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3.5 py-1.5"
-          :class="defaultStreamClass"
-        >
-          Удалить
-        </button>
-        <button
-          class="w-[100px] absolute bottom-[8px] right-[8px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3.5 py-1.5"
-          :class="defaultStreamClass"
-          @click="changeStream">
-          Изменить
-        </button>
+        <div v-if="isAuthenticated">
+          <button
+            class="w-[100px] absolute bottom-[8px] right-[115px] text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3.5 py-1.5"
+            :class="defaultStreamClass"
+          >
+            Удалить
+          </button>
+          <button
+            class="w-[100px] absolute bottom-[8px] right-[8px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3.5 py-1.5"
+            :class="defaultStreamClass"
+            @click="changeStream">
+            Изменить
+          </button>
+        </div>
       
       </div>
     </div>

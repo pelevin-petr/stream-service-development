@@ -7,6 +7,7 @@ import { router } from '@/routes/router'
 import { vueKeycloak } from '@josempgon/vue-keycloak'
 
 
+
 (async () => {
   const app = createApp(App)
   await vueKeycloak.install(app, {
@@ -17,7 +18,7 @@ import { vueKeycloak } from '@josempgon/vue-keycloak'
     },
     initOptions: {
       onLoad: 'check-sso',
-      silentCheckSsoRedirectUri: window.location.origin+ '/silent-check-sso.html',
+      silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
     }
   })
   app.use(createPinia())
