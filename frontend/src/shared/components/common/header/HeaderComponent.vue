@@ -32,6 +32,13 @@ const props = defineProps<{routes: NavTab[]}>()
       </RouterLink>
       
       <div class="flex justify-end xl:order-2 space-x-3 xl:space-x-0 rtl:space-x-reverse">
+        <div>
+            <button
+              class="mr-1 text-black-50 bg-gray-200 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:bg-gray-200 font-medium rounded-lg text-sm px-5 py-2 text-center dark:bg-gray-700 dark:hover:bg-gray-800 dark:focus:ring-blue-800 dark:text-white"
+              type="button">
+              Панель администратора
+            </button>
+        </div>
         <div v-if="!isAuthenticated">
           <span @click="keycloak?.login">
             <button
