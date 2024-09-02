@@ -2,15 +2,15 @@
 import { ref } from 'vue'
 import { useKeycloak } from '@josempgon/vue-keycloak'
 
-import type { Stream } from '@/shared/modules/streamInterface'
 import TheModal from '@/shared/components/modals/TheModal.vue'
 import CreateDeleteStream from '@/shared/components/modals/TheModalCreate.vue'
 import ThePopUpDeleting from '@/shared/components/modals/ThePopUpDeleting.vue'
 import LoadingSpinner from '@/shared/modules/LoadingSpinner.vue'
 import trashSvg from '@/shared/assets/img/trash.svg'
+import type { Instructor } from '@/shared/modules/instructorsInterface'
 
 
-const streams = ref<Stream[]>([])
+const instructors = ref<Instructor[]>([])
 const search = ref<string>('')
 const model = ref()
 const isOpenCreateModal = ref(false)
@@ -25,20 +25,20 @@ setInterval(async () => {
   
   if (!res.ok) {
     loading.value = false
-    streams.value = []
+    instructors.value = []
     return
   }
   loading.value = true
   
-  streams.value = await res.json()
+  instructors.value = await res.json()
 }, 1000)
 
-const deleteStream = (stream: Stream) => {
-  popupModel.value.stream = stream
+const deleteStream = (instructor: Instructor) => {
+  popupModel.value.stream = instructor
   popupModel.value.continueDeleting = true
   
   const deleteTimeout = setTimeout(async () => {
-    const res = await fetch(`http://127.0.0.1:8000/api/streams?stream_id=${stream.id}`, {
+    const res = await fetch(`http://127.0.0.1:8000/api/streams?stream_id=${instructor.id}`, {
       method: 'DELETE',
       headers: { 'content-type': 'application/json' }
     })
@@ -46,7 +46,7 @@ const deleteStream = (stream: Stream) => {
     if (!res.ok) {
       return
     }
-    streams.value = streams.value.filter((s) => s.id != stream.id)
+    instructors.value = instructors.value.filter((s) => s.id != instructor.id)
   }, 7000)
   
   const interval = setInterval(() => {
@@ -96,27 +96,27 @@ const deleteStream = (stream: Stream) => {
         </button>
       </div>
       
-      <div v-if="streams && streams.length > 0">
+      <div v-if="instructors && instructors.length > 0">
         <div class="mt-1 grid grid-cols-3 text-xl font-semibold">
           <div class="grid_element titles">Id инструктора</div>
           <div class="grid_element titles">ФИО</div>
           <div class="grid_element titles">Стаж работы</div>
         </div>
         
-        <div class="relative grid grid-cols-3" v-for="stream in streams" :key="stream.id">
-          <button @click="model.openStreamInfo(stream)">
-            <div class="grid_element">{{ stream.id }}</div>
+        <div class="relative grid grid-cols-3" v-for="instructor in instructors" :key="instructor.id">
+          <button @click="model.openStreamInfo(instructor)">
+            <div class="grid_element">{{ instructor.id }}</div>
           </button>
-          <button @click="model.openStreamInfo(stream)">
-            <div class="grid_element">{{ stream.fullname }}</div>
+          <button @click="model.openStreamInfo(instructor)">
+            <div class="grid_element">{{ instructor.fullname }}</div>
           </button>
-          <button @click="model.openStreamInfo(stream)">
-            <div class="grid_element">{{ stream.workExperiens }}</div>
+          <button @click="model.openStreamInfo(instructor)">
+            <div class="grid_element">{{ instructor.workExperience }}</div>
           </button>
           <button
             v-if="isAuthenticated"
             class="absolute w-[30px] right-[5px] top-[7px]"
-            @click="deleteStream(stream); popupModel!.openPopup()"
+            @click="deleteStream(instructor); popupModel!.openPopup()"
           >
             <img :src="trashSvg" alt="" />
           </button>
