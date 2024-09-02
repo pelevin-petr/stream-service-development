@@ -2,14 +2,17 @@
 import { ref } from 'vue'
 import { useKeycloak } from '@josempgon/vue-keycloak'
 
-import NavBar from '@/components/common/header/NavBar.vue'
-import faviconSVG from '@/assets/img/favicon.svg'
+import NavBar from '@/shared/components/common/header/NavBar.vue'
+import faviconSVG from '@/shared/assets/img/favicon.svg'
+import type { NavTab } from '@/shared/modules/nav-tab'
 
 
 const { isAuthenticated } = useKeycloak()
 const visible = ref(window.innerWidth >= 1280)
 const headerClass = ref(window.innerWidth >= 1280)
 const { keycloak } = useKeycloak()
+
+const props = defineProps<{routes: NavTab[]}>()
 </script>
 
 <template>
@@ -55,7 +58,7 @@ const { keycloak } = useKeycloak()
         </button>
       </div>
       <div class="flex justify-center" :class="{'col-span-full': !headerClass}">
-        <NavBar v-show="visible" v-model="visible">
+        <NavBar v-show="visible" v-model="visible" :routes="routes" >
         </NavBar>
       </div>
     </div>

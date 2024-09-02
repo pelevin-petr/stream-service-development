@@ -2,9 +2,9 @@
 import { onUnmounted, ref, nextTick, onMounted } from 'vue'
 import { useKeycloak } from '@josempgon/vue-keycloak'
 
-import type { Stream } from '@/modules/streamInterface'
-import { $vCreate, errorsCreate } from '@/validation/validationCreating'
-import carModalImg from '@/assets/img/modal-car.png'
+import type { Stream } from '@/shared/modules/streamInterface'
+import { $vCreate, errorsCreate } from '@/shared/validation/validationCreating'
+import carModalImg from '@/shared/assets/img/modal-car.png'
 const { isAuthenticated } = useKeycloak()
 
 

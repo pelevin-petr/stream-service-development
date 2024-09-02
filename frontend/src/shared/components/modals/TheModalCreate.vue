@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nextTick, onMounted, onUnmounted, ref } from 'vue'
 
-import { $vCreate, errorsCreate } from '@/validation/validationCreating'
+import { $vCreate, errorsCreate } from '@/shared/validation/validationCreating'
 
 
 const id = ref<number>()

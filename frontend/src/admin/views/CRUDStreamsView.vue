@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import type { Stream } from '@/modules/streamInterface'
-import TheModal from '@/components/modals/TheModal.vue'
-import CreateDeleteStream from '@/components/modals/TheModalCreate.vue'
-import ThePopUpDeleting from '@/components/modals/ThePopUpDeleting.vue'
-import LoadingSpinner from '@/components/LoadingSpinner.vue'
-import trashSvg from '@/assets/img/trash.svg'
+import type { Stream } from '@/shared/modules/streamInterface'
+import TheModal from '@/shared/components/modals/TheModal.vue'
+import CreateDeleteStream from '@/shared/components/modals/TheModalCreate.vue'
+import ThePopUpDeleting from '@/shared/components/modals/ThePopUpDeleting.vue'
+import LoadingSpinner from '@/shared/modules/LoadingSpinner.vue'
+import trashSvg from '@/shared/assets/img/trash.svg'
 
 
 const streams = ref<Stream[]>([])

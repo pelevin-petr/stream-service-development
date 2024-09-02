@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
-import type { Stream } from '@/modules/streamInterface'
+import type { Stream } from '@/shared/modules/streamInterface'
 
 export const useStreamStore = defineStore('stream', () => {
   const streamId = ref<number>()

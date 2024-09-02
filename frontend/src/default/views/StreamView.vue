@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import mpegts from 'mpegts.js'
 
-import { useStreamStore } from '@/stores/stream'
+import { useStreamStore } from '@/shared/stores/stream'
 
 const store = useStreamStore()
 const route = useRoute()

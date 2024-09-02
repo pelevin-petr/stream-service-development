@@ -2,12 +2,12 @@
 import { ref } from 'vue'
 import { useKeycloak } from '@josempgon/vue-keycloak'
 
-import type { Stream } from '@/modules/streamInterface'
-import TheModal from '@/components/modals/TheModal.vue'
-import CreateDeleteStream from '@/components/modals/TheModalCreate.vue'
-import ThePopUpDeleting from '@/components/modals/ThePopUpDeleting.vue'
-import LoadingSpinner from '@/components/LoadingSpinner.vue'
-import trashSvg from '@/assets/img/trash.svg'
+import type { Stream } from '@/shared/modules/streamInterface'
+import TheModal from '@/shared/components/modals/TheModal.vue'
+import CreateDeleteStream from '@/shared/components/modals/TheModalCreate.vue'
+import ThePopUpDeleting from '@/shared/components/modals/ThePopUpDeleting.vue'
+import LoadingSpinner from '@/shared/modules/LoadingSpinner.vue'
+import trashSvg from '@/shared/assets/img/trash.svg'
 
 
 const streams = ref<Stream[]>([])
@@ -21,7 +21,7 @@ const popupModel = ref()
 
 
 setInterval(async () => {
-  const res = await fetch(`http://127.0.0.1:8000/api/streams?filter_params=${search.value}`)
+  const res = await fetch(`http://127.0.0.1:8000/api/instructors?filter_params=${search.value}`)
   
   if (!res.ok) {
     loading.value = false
@@ -108,10 +108,10 @@ const deleteStream = (stream: Stream) => {
             <div class="grid_element">{{ stream.id }}</div>
           </button>
           <button @click="model.openStreamInfo(stream)">
-            <div class="grid_element">{{ stream.title }}</div>
+            <div class="grid_element">{{ stream.fullname }}</div>
           </button>
           <button @click="model.openStreamInfo(stream)">
-            <div class="grid_element">{{ stream.description }}</div>
+            <div class="grid_element">{{ stream.workExperiens }}</div>
           </button>
           <button
             v-if="isAuthenticated"

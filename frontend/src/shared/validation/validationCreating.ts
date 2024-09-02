@@ -2,9 +2,9 @@ import { computed, ref } from 'vue'
 import { helpers, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
 
-import type { IFormCreate } from '@/validation/helpers'
-import { FORM_REQUIRED_FIELD } from '@/validation/helpers'
-import { useValidationErrors } from '@/validation/useValidationErrors'
+import type { IFormCreate } from '@/shared/validation/helpers'
+import { FORM_REQUIRED_FIELD } from '@/shared/validation/helpers'
+import { useValidationErrors } from '@/shared/validation/useValidationErrors'
 
 
 

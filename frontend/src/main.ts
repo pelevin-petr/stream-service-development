@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 
 import './main.css'
 import App from './App.vue'
-import { router } from '@/routes/router'
+import { router } from '@/shared/routes/router'
 import { vueKeycloak } from '@josempgon/vue-keycloak'
 
 
