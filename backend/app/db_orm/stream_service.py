@@ -4,8 +4,8 @@ from sqlalchemy import select, cast, String
 from sqlalchemy.sql.operators import or_
 
 from db_orm.database import engine, session_factory
-from db_orm.models import Base, StreamsOrm
-from stream import Stream, CreateStream
+from db_orm.ORM_models import Base, StreamsOrm
+from models.stream import Stream, CreateStream
 
 
 class StreamsService:

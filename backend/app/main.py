@@ -1,11 +1,13 @@
-from fastapi import FastAPI, APIRouter, Request, status, HTTPException, Header
+from fastapi import FastAPI, APIRouter, Request, status, HTTPException
 from fastapi.encoders import jsonable_encoder
 from pydantic import ValidationError
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-from db_orm.service import streams_service
-from stream import Stream, CreateStream
+from db_orm.instructor_service import instructors_service
+from db_orm.stream_service import streams_service
+from models.instructor import Instructor, CreateInstructor
+from models.stream import Stream, CreateStream
 
 app = FastAPI(
     title="Stream Service",
@@ -14,10 +16,11 @@ app = FastAPI(
 router = APIRouter(prefix='/api')
 
 streams_service.create_tables()
+instructors_service.create_tables()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5174", "http://localhost:5173"],
+    allow_origins=["http://localhost:5174", "http://localhost:5173", "http://localhost:4173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -69,4 +72,42 @@ def delete_stream(stream_id: int) -> Stream:
     return stream
 
 
+@router.get("/instructors", response_model=list[Instructor])
+def read_instructors(filter_params: str | None = None):
+    instructors = instructors_service.get_all(filter_params)
+    if not instructors:
+        raise HTTPException(status_code=404, detail="Instructors not found")
+    return instructors
+
+
+@router.get("/instructors/{instructors_id}", response_model=Instructor)
+def read_instructor(instructor_id: int) -> Instructor:
+    instructor = instructors_service.get_by_id(instructor_id)
+    if not instructor:
+        raise HTTPException(status_code=404, detail="Instructor not found")
+    return instructor
+
+
+@router.post("/instructors", response_model=Instructor)
+def create_instructor(instructor: CreateInstructor) -> Instructor:
+    return instructors_service.create(instructor)
+
+
+@router.put("/instructors", response_model=Instructor)
+def update_instructor(instructor_id: int, instructor: CreateInstructor) -> Instructor:
+    instructor = instructors_service.update(instructor_id, instructor)
+    if instructor is None:
+        raise HTTPException(status_code=404, detail="Instructor not found")
+    return instructor
+
+
+@router.delete("/instructors", response_model=Instructor)
+def delete_instructor(instructor_id: int) -> Instructor:
+    instructor = instructors_service.delete(instructor_id)
+    if instructor is None:
+        raise HTTPException(status_code=404, detail="Instructor not found")
+    return instructor
+
+
 app.include_router(router)
+
