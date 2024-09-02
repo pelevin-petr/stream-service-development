@@ -13,7 +13,7 @@ const { isAuthenticated } = useKeycloak()
         <RouterLink to="/" class="text-blue-500 hover:underline mx-2 text-sm">Главная</RouterLink>
         <RouterLink to="" class="text-blue-500 hover:underline mx-2 text-sm">Инструкторы</RouterLink>
         <span v-if="isAuthenticated">
-          <RouterLink to="create-streams" class="text-blue-500 hover:underline mx-2 text-sm">Стримы</RouterLink>
+          <RouterLink to="create-instructors" class="text-blue-500 hover:underline mx-2 text-sm">Стримы</RouterLink>
         </span>
       </nav>
     </div>
