@@ -2,7 +2,7 @@
 import { useKeycloak } from '@josempgon/vue-keycloak'
 
 
-const { isAuthenticated } = useKeycloak()
+const { hasRoles } = useKeycloak()
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const { isAuthenticated } = useKeycloak()
       <nav class="mt-2">
         <RouterLink to="/" class="text-blue-500 hover:underline mx-2 text-sm">Главная</RouterLink>
         <RouterLink to="" class="text-blue-500 hover:underline mx-2 text-sm">Инструкторы</RouterLink>
-        <span v-if="isAuthenticated">
+        <span v-if="hasRoles(['my-admin-role'])">
           <RouterLink to="create-instructors" class="text-blue-500 hover:underline mx-2 text-sm">Стримы</RouterLink>
         </span>
       </nav>

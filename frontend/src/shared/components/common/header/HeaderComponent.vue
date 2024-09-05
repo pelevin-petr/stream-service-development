@@ -5,12 +5,14 @@ import { useKeycloak } from '@josempgon/vue-keycloak'
 import NavBar from '@/shared/components/common/header/NavBar.vue'
 import faviconSVG from '@/shared/assets/img/favicon.svg'
 import type { NavTab } from '@/shared/modules/nav-tab'
+import { useRouter } from 'vue-router'
 
 
 const { isAuthenticated } = useKeycloak()
 const visible = ref(window.innerWidth >= 1280)
 const headerClass = ref(window.innerWidth >= 1280)
-const { keycloak } = useKeycloak()
+const { keycloak, roles, hasRoles } = useKeycloak()
+const router = useRouter()
 
 const props = defineProps<{routes: NavTab[]}>()
 </script>
@@ -32,10 +34,12 @@ const props = defineProps<{routes: NavTab[]}>()
       </RouterLink>
       
       <div class="flex justify-end xl:order-2 space-x-3 xl:space-x-0 rtl:space-x-reverse">
-        <div>
+        <div v-if="hasRoles(['my-admin-role'])">
             <button
               class="mr-1 text-black-50 bg-gray-200 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:bg-gray-200 font-medium rounded-lg text-sm px-5 py-2 text-center dark:bg-gray-700 dark:hover:bg-gray-800 dark:focus:ring-blue-800 dark:text-white"
-              type="button">
+              type="button"
+              @click="router.push('/admin')"
+            >
               Панель администратора
             </button>
         </div>

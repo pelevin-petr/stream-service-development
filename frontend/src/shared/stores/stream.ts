@@ -11,7 +11,7 @@ export const useStreamStore = defineStore('stream', () => {
       stream.value = undefined
       return
     }
-                                                            //streamId.value(так было изначально)
+
     const res = await fetch(`/api/streams/${newStreamId}`)
 
     if (!res.ok) {
