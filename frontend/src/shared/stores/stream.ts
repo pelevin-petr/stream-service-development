@@ -1,10 +1,10 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
-import type { Stream } from '@/shared/modules/streamInterface'
+import type { BaseStream } from '@/shared/modules/streamInterface'
 
 export const useStreamStore = defineStore('stream', () => {
   const streamId = ref<number>()
-  const stream = ref<Stream>()
+  const stream = ref<BaseStream>()
 
   watch(streamId, async (newStreamId?: number) => {
     if (!newStreamId) {

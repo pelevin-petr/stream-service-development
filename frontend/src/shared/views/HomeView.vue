@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 
-import type { Stream } from '@/shared/modules/streamInterface'
+import type { BaseStream } from '@/shared/modules/streamInterface'
 import loadingWebp from '@/shared/assets/img/loading.webp'
 
-const streams = ref<Stream[]>([])
+const streams = ref<BaseStream[]>([])
 
-onMounted(async () => {
-  const response = await fetch('/api/streams')
-  const aboutStreams = await response.json()
-  streams.value = aboutStreams
+// onMounted(async () => {
+//   const response = await fetch('/api/streams')
+//   const aboutStreams = await response.json()
+//   streams.value = aboutStreams
   // const response = await fetch('http://127.0.0.1:1985/api/v1/streams/')
   // const aboutStreams = await response.json()
   //
@@ -22,11 +22,11 @@ onMounted(async () => {
   // })
   //
   // streams.value = await Promise.all(streamsPromises)
-})
+// })
 </script>
 
 <template>
-  <div>
+  <div class="md:px-8">
     <div class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
       <div v-for="stream of streams" :key="stream.id"
            class="w-auto mx-auto min-w-[300px] max-w-[350px] h-[300px] bg-white shadow-lg rounded-2xl overflow-hidden dark:bg-neutral-500 dark:text-gray-100">

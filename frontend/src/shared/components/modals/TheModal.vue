@@ -2,7 +2,7 @@
 import { onUnmounted, ref, nextTick, onMounted } from 'vue'
 import { useKeycloak } from '@josempgon/vue-keycloak'
 
-import type { Stream } from '@/shared/modules/streamInterface'
+import type { BaseStream, Stream } from '@/shared/modules/streamInterface'
 import { $vCreate, errorsCreate } from '@/shared/validation/validationCreating'
 import carModalImg from '@/shared/assets/img/modal-car.png'
 const { isAuthenticated } = useKeycloak()
@@ -12,9 +12,10 @@ const isOpen = ref(false)
 const newImage = ref<HTMLImageElement | null>()
 const updatedStreamClass = ref<string>('hidden')
 const defaultStreamClass = ref<string>('inline')
-const selectedStream = ref<Stream>()
+const selectedStream = ref<BaseStream>()
 const submittedCreating = ref(false)
 const modalOverlay = ref<HTMLDivElement>()
+const streamImg = ref<string>()
 
 const model = defineModel()
 
@@ -36,7 +37,9 @@ const validateCreating = async () => {
 
 const openStreamInfo = (stream: Stream) => {
   isOpen.value = !isOpen.value
-  selectedStream.value = stream
+  selectedStream.value = stream.stream
+  streamImg.value = stream.file_url
+  console.log(stream)
 }
 model.value = {
   openStreamInfo: openStreamInfo
@@ -65,6 +68,7 @@ const changeStream = () => {
 }
 
 const cancelUpdate = () => {
+  submittedCreating.value = false
   updatedStreamClass.value = 'hidden'
   defaultStreamClass.value = 'inline'
   $vCreate.value.title.$model = ''
@@ -100,11 +104,12 @@ const closeModal = () => {
       <button class="absolute right-3 top-0" @click="closeModal">
         <span class="close">&times;</span>
       </button>
+      
       <div class="wrapper">
         
-        <div>
-          <img :src="carModalImg" alt="Это изображение не поддерживается вашим браузером"
-               class="w-[170px] md:w-[200px] rounded-xl " />
+        <div class="min-h-[300px] flex flex-col items-center justify-center ">
+          <img :src="streamImg" alt="Это изображение не поддерживается вашим браузером"
+               class="w-[170px] md:w-[200px] rounded-xl order-0" />
           <div :class="updatedStreamClass">
             <label
               class="upload-label block cursor-pointer p-[5px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-center mt-[15px]">

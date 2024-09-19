@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useKeycloak } from '@josempgon/vue-keycloak'
 
 
-import TopView from '@/shared/views/TopView.vue'
+import TopView from '@/default/views/TopView.vue'
 import AdminView from '@/admin/views/AdminView.vue'
 import { adminRoutes } from '@/admin/routes/router'
 import { routes } from '@/default/routes/router'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import type { Stream } from '@/shared/modules/streamInterface'
+import type { BaseStream, Stream } from '@/shared/modules/streamInterface'
 import TheModal from '@/shared/components/modals/TheModal.vue'
 import CreateDeleteStream from '@/shared/components/modals/TheModalCreate.vue'
 import ThePopUpDeleting from '@/shared/components/modals/ThePopUpDeleting.vue'
@@ -31,7 +31,7 @@ setInterval(async () => {
   streams.value = await res.json()
 }, 1000)
 
-const deleteStream = (stream: Stream) => {
+const deleteStream = (stream: BaseStream) => {
   popupModel.value.stream = stream
   popupModel.value.continueDeleting = true
   
@@ -44,7 +44,7 @@ const deleteStream = (stream: Stream) => {
     if (!res.ok) {
       return
     }
-    streams.value = streams.value.filter((s) => s.id != stream.id)
+    streams.value = streams.value.filter((s) => s.stream.id != stream.id)
   }, 7000)
   
   const interval = setInterval(() => {
@@ -100,19 +100,19 @@ const deleteStream = (stream: Stream) => {
           <div class="grid_element titles">Описание</div>
         </div>
         
-        <div class="relative grid grid-cols-3" v-for="stream in streams" :key="stream.id">
+        <div class="relative grid grid-cols-3" v-for="stream in streams" :key="stream.stream.id">
           <button @click="model.openStreamInfo(stream)">
-            <div class="grid_element">{{ stream.id }}</div>
+            <div class="grid_element">{{ stream.stream.id }}</div>
           </button>
           <button @click="model.openStreamInfo(stream)">
-            <div class="grid_element">{{ stream.title }}</div>
+            <div class="grid_element">{{ stream.stream.title }}</div>
           </button>
           <button @click="model.openStreamInfo(stream)">
-            <div class="grid_element">{{ stream.description }}</div>
+            <div class="grid_element">{{ stream.stream.description }}</div>
           </button>
           <button
             class="absolute w-[30px] right-[5px] top-[7px]"
-            @click="deleteStream(stream); popupModel!.openPopup()"
+            @click="deleteStream(stream.stream); popupModel!.openPopup()"
           >
             <img :src="trashSvg" alt="" />
           </button>
