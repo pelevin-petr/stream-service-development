@@ -4,10 +4,11 @@ import { ref } from 'vue'
 import type { Instructor } from '@/shared/modules/instructorsInterface'
 import gerasimchuckJPG from '@/default/assets/img/gerasimchuk.jpg'
 import LoadingSpinner from '@/shared/modules/LoadingSpinner.vue'
+import { useInstructorStore } from '@/shared/stores/instructor'
 
 const instructors = ref<Instructor[]>()
 const loading = ref<boolean>(true)
-
+const store = useInstructorStore()
 
 setInterval(async () => {
   const res = await fetch(`http://127.0.0.1:8000/api/instructors?filter_params=`)
@@ -33,7 +34,7 @@ setInterval(async () => {
         v-for="instructor in instructors"
         :key="instructor.id"
       >
-        <RouterLink to="/" class="flex flex-col justify-center items-center m-[20px]">
+        <RouterLink :to="/instructor/ + instructor.id" class="flex flex-col justify-center items-center m-[20px]" @click="store.instructor = instructor">
           <img :src="gerasimchuckJPG" alt="Изображение не поддерживается браузером">
           <div class="text-xl text-blue-500 italic mt-[10px] hover:underline hover:text-blue-800">{{ instructor.fullname }}</div>
         </RouterLink>
