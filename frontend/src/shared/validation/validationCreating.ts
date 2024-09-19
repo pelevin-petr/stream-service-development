@@ -4,23 +4,29 @@ import { useVuelidate } from '@vuelidate/core'
 
 import type { IFormCreate } from '@/shared/validation/helpers'
 import { FORM_REQUIRED_FIELD } from '@/shared/validation/helpers'
-import { useValidationErrors } from '@/shared/validation/useValidationErrors'
-
+import { useValidationErrors, useValidationErrorsForFile } from '@/shared/validation/useValidationErrors'
 
 
 const formCreate = ref<IFormCreate>({
   title: '',
-  description: ''
+  description: '',
+  file: undefined
 })
 
 const rulesCreate = {
   title: {
     required: helpers.withMessage(FORM_REQUIRED_FIELD, required)
   },
-  description: {}
+  description: {},
+  file: {
+    required: helpers.withMessage(FORM_REQUIRED_FIELD, required)
+  }
 
 }
 
 export const $vCreate = useVuelidate(rulesCreate, formCreate)
 
-export const errorsCreate = computed(() => useValidationErrors<IFormCreate>($vCreate.value.$errors))
+export const errorsCreate =computed(() => ({
+  ...useValidationErrorsForFile($vCreate.value.$errors),
+  ...useValidationErrors($vCreate.value.$errors)
+}))

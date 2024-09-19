@@ -7,8 +7,13 @@
 //   city: string;   //or other specific information
 // }
 
-export interface Stream {
+export interface BaseStream {
   readonly id: string;
   title: string;
   description: string;
+}
+
+export interface Stream {
+  stream: BaseStream,
+  file_url: string
 }
