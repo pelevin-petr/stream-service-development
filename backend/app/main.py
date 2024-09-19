@@ -1,4 +1,6 @@
-from fastapi import FastAPI, APIRouter, Request, status, HTTPException
+from typing import Optional, Tuple, List, Any, Dict
+
+from fastapi import FastAPI, APIRouter, Request, status, HTTPException, Form, UploadFile, File
 from fastapi.encoders import jsonable_encoder
 from pydantic import ValidationError
 from fastapi.responses import JSONResponse
@@ -35,37 +37,47 @@ async def validation_exception_handler(request: Request, exc: ValidationError) -
     )
 
 
-@router.get("/streams", response_model=list[Stream])
-def read_streams(filter_params: str | None = None):
+@router.get("/streams", response_model=List[Dict[str, Any]])
+def read_streams(filter_params: str | None = None) -> List[Dict[str, Any]]:
     streams = streams_service.get_all(filter_params)
     if not streams:
         raise HTTPException(status_code=404, detail="Streams not found")
     return streams
 
 
-@router.get("/streams/{stream_id}", response_model=Stream)
-def read_stream(stream_id: int) -> Stream:
+@router.get("/streams/{stream_id}", response_model=Dict[str, Any])
+def read_stream(stream_id: int) -> Dict[str, Any]:
     stream = streams_service.get_by_id(stream_id)
     if not stream:
         raise HTTPException(status_code=404, detail="Stream not found")
     return stream
 
 
-@router.post("/streams", response_model=Stream)
-def create_stream(stream: CreateStream) -> Stream:
-    return streams_service.create(stream)
+@router.post("/streams", response_model=Dict[str, Any])
+def create_stream(
+        title: str = Form(...),
+        description: str = Form(None),
+        file: Optional[UploadFile] = File()
+) -> Dict[str, Any]:
+    return streams_service.create(title, description, file)
 
 
-@router.put("/streams", response_model=Stream)
-def update_stream(stream_id: int, stream: CreateStream) -> Stream:
-    stream = streams_service.update(stream_id, stream)
+@router.put("/streams", response_model=Dict[str, Any])
+def update_stream(
+        stream_id: int,
+        title: str = Form(...),
+        description: str = Form(None),
+        file: Optional[UploadFile] = File()
+) -> Dict[str, Any]:
+    stream = streams_service.update(stream_id, title, description, file)
+
     if stream is None:
         raise HTTPException(status_code=404, detail="Stream not found")
     return stream
 
 
-@router.delete("/streams", response_model=Stream)
-def delete_stream(stream_id: int) -> Stream:
+@router.delete("/streams", response_model=Dict[str, Any])
+def delete_stream(stream_id: int) -> Dict[str, Any]:
     stream = streams_service.delete(stream_id)
     if stream is None:
         raise HTTPException(status_code=404, detail="Stream not found")
@@ -110,4 +122,3 @@ def delete_instructor(instructor_id: int) -> Instructor:
 
 
 app.include_router(router)
-
