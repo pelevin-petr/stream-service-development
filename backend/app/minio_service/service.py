@@ -19,7 +19,7 @@ def upload_file(file: UploadFile, bucket: str, file_id: str) -> None:
             minio_client.make_bucket(bucket)
 
         file_data = file.file.read()
-        print('file_data', file_data)
+
         minio_client.put_object(
             bucket,
             file_id,
