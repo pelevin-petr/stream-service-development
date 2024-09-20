@@ -10,20 +10,20 @@ const route = useRoute()
 
 const video = ref<HTMLVideoElement | null>(null)
 
-onMounted(() => {
-  store.streamId = +route.params.id
-  
-  if (mpegts.getFeatureList().mseLivePlayback) {
-    let player = mpegts.createPlayer({
-      type: 'mse',  // could also be mpegts, m2ts, flv
-      isLive: true,
-      url: `http://127.0.0.1:8080/live/${store.streamId}.flv`
-    })
-    player.attachMediaElement(video.value!)
-    player.load()
-    player.play()
-  }
-})
+// onMounted(() => {
+//   store.streamId = +route.params.id
+//
+//   if (mpegts.getFeatureList().mseLivePlayback) {
+//     let player = mpegts.createPlayer({
+//       type: 'mse',  // could also be mpegts, m2ts, flv
+//       isLive: true,
+//       url: `http://127.0.0.1:8080/live/${store.streamId}.flv`
+//     })
+//     player.attachMediaElement(video.value!)
+//     player.load()
+//     player.play()
+//   }
+// })
 </script>
 
 <template>
